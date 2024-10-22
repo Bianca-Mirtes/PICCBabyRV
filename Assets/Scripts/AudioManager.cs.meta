@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/AudioManager.cs.meta
+guid: f912531b3523e4a42ac4186d9ab1f2fa
+========
+guid: 57a9bba4c7c6adc40805917ce487896a
+>>>>>>>> issue_5_lavar_as_maos:Assets/Shared/Scripts/AdjustTimeScale.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

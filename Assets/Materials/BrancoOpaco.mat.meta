@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Materials/BrancoOpaco.mat.meta
+guid: 8093d7f7e35a11f4498bb6035ee952c1
+========
+guid: 8e3aeda23d20122498e95e3a9e93a500
+>>>>>>>> issue_7_adicionar_maos:Assets/Unity VR Basics 2023 Hands/Oculus Hands/Material/M_Hand.mat.meta
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

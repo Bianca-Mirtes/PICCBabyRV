@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Unity VR Basics 2023 Hands/Oculus Hands/Animations/RightHand_Default.anim.meta
+guid: a6d95380804ae1745a4651720af712cb
+========
+guid: 8840ee10209f7f84a8c8e4ef908d3313
+>>>>>>>> issue_5_lavar_as_maos:Assets/Animations/Faucet/Open.anim.meta
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/AnimateHandController.cs.meta
+guid: 91a6038c379d7824bb11e281bf2a35b4
+========
+guid: 366060de70f6d41d688e416621057bb3
+>>>>>>>> issue_5_lavar_as_maos:Assets/Shared/Ramps/Runtime/RampAsset.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Materials/Gradient Skybox.mat.meta
+guid: 5e43f66844857864ca1c7b7f98aa16f2
+========
+guid: 0491051b82b09be4eaa3b2224971acc7
+>>>>>>>> issue_5_lavar_as_maos:Assets/EffectExamples/Water Effects/Materials/Splash.mat.meta
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

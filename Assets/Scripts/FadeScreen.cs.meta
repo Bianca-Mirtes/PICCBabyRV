@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/FadeScreen.cs.meta
+guid: 9974a192bec23244586da63c12eaf5c2
+========
+guid: 0939ef1fe67b3477e8058638b5924ab5
+>>>>>>>> issue_5_lavar_as_maos:Assets/Shared/Ramps/Editor/RampAssetEditor.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

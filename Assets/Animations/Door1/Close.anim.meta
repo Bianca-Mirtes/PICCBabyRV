@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Animations/Door1/CloseDoor.anim.meta
+guid: 9410f1481f034d24d9f883fdf45a45e0
+========
+guid: fb3f1b2fe83b487499ca32f7a2e1ec7d
+>>>>>>>> issue_7_adicionar_maos:Assets/Unity VR Basics 2023 Hands/Oculus Hands/Animations/LeftHand_Default.anim.meta
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

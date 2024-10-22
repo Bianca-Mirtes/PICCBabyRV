@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Unity VR Basics 2023 Hands/Oculus Hands/Animations/LeftHand_Pinch.anim.meta
+guid: ea87ceedd08d2a44cac8c7c6eec7c386
+========
+guid: f4fad3fc44dd31344b34946db50c3b3b
+>>>>>>>> issue_5_lavar_as_maos:Assets/Animations/Faucet/Close.anim.meta
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Animations/Door2/OpenDoor.anim.meta
+guid: a6dc39d387bfe9443b12ca8a88b47d1a
+========
+guid: 943f2491dcff0534ba3717635e79dadb
+>>>>>>>> issue_7_adicionar_maos:Assets/Unity VR Basics 2023 Hands/Oculus Hands/Animations/RightHand_Default.anim.meta
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
