@@ -9,8 +9,7 @@ using Unity.VisualScripting;
 //Controller para lidar com identificar colisões.
 public class IdentifyMaterialsController : MonoBehaviour
 {
-
-     public int QuantidadeNecessaria = 0;
+     public int QuantidadeNecessaria = 14;
 
      public TextMeshProUGUI MostrarQuantidadeNecessaria;
 
@@ -18,12 +17,11 @@ public class IdentifyMaterialsController : MonoBehaviour
 
      public TextMeshProUGUI MostrarQuantidadePreenchida;
 
-     private int QuantidadeIncorretos = 0;
+     private int QuantidadeIncorretos = 5;
 
-     private int QuantidadeCorretos = 0;
+     private int QuantidadeCorretos = 14;
 
      private List<(GameObject, GameObject)> SocketMaterialCollections = new List<(GameObject, GameObject)>();
-
 
      void Start()
      {
@@ -32,7 +30,6 @@ public class IdentifyMaterialsController : MonoBehaviour
 
      public void IdentifyTouch(XRSocketInteractor socket)
      {
-
           GameObject currentHook = socket.transform.parent.gameObject;
           GameObject currentMaterial = socket.selectTarget.gameObject;
 
@@ -41,34 +38,23 @@ public class IdentifyMaterialsController : MonoBehaviour
           if (socket.selectTarget.gameObject != null)
           {
                Debug.Log("name: " + currentMaterial.name);
-
                if (currentMaterial.tag == "CasoPicc")
-               {
                     QuantidadeCorretos++;
-               }
                else if (currentMaterial.tag == "NaoPicc")
-               {
                     QuantidadeIncorretos++;
-               }
                else
-               {
                     Debug.LogError("Objeto não pertence aos materiais");
-               }
 
                QuantidadePreenchida++;
                MostrarQuantidadePreenchida.text = QuantidadePreenchida.ToString();
           }
           else
-          {
                Debug.LogError("iteractable é null");
-          }
      }
 
      public void RemoveObject(XRSocketInteractor socket)
      {
-
           (GameObject, GameObject) objFound = new();
-
           foreach (var obj in SocketMaterialCollections)
           {
 
@@ -76,17 +62,11 @@ public class IdentifyMaterialsController : MonoBehaviour
                {
 
                     if (obj.Item2.tag == "CasoPicc")
-                    {
                          QuantidadeCorretos = QuantidadeCorretos - 1;
-                    }
                     else if (obj.Item2.tag == "NaoPicc")
-                    {
                          QuantidadeIncorretos = QuantidadeIncorretos - 1;
-                    }
                     else
-                    {
                          Debug.LogError("Objeto não pertence aos materiais");
-                    }
 
                     objFound = obj;
                     QuantidadePreenchida--;
@@ -101,22 +81,18 @@ public class IdentifyMaterialsController : MonoBehaviour
                MostrarQuantidadePreenchida.text = QuantidadePreenchida.ToString();
           }
           else
-          {
                Debug.LogError("Error ao remover material");
-          }
      }
 
      /*Quando verificar que todos os items foram preenchidos e estão corretos, entao o enfermeiro pode pegar a caixa de materiais*/
      public void IsRightToAllowGrabOfMaterialTable(TextMeshProUGUI result)
      {
-
-          if (QuantidadeNecessaria <= QuantidadePreenchida)
+          if (QuantidadeNecessaria == QuantidadePreenchida)
           {
-
                if (QuantidadeCorretos == QuantidadeNecessaria && QuantidadeIncorretos == 0)
                {
                     Debug.Log("Ativar XRGrab");
-                    result.color = UnityEngine.Color.black; 
+                    result.color = Color.black; 
                     result.text = "Correto!";
                     StateController.Instance.SetState(State.LavarMaos);
                     AudioManager.instance.Play("correct_sound");
@@ -136,7 +112,5 @@ public class IdentifyMaterialsController : MonoBehaviour
                result.text = "Quantidade insuficiente";
                AudioManager.instance.Play("incorrect_sound");
             }
-
      }
-
 }
