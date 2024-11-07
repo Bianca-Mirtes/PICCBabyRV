@@ -147,7 +147,6 @@ GameObject:
   - component: {fileID: 5403480096627213233}
   - component: {fileID: 4072915400990401966}
   - component: {fileID: 9096096449153581499}
-  - component: {fileID: 7590916919132712808}
   - component: {fileID: 1508474428047967935}
   m_Layer: 0
   m_Name: "Pin\xE7aAntissepsia"
@@ -439,19 +438,6 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!114 &7590916919132712808
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2861015015221847929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d84465f32e5b66492b0acc66509bcc58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  material: {fileID: 2861015015221847929}
 --- !u!114 &1508474428047967935
 MonoBehaviour:
   m_ObjectHideFlags: 0

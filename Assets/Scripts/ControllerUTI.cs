@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -10,12 +11,13 @@ public class ControllerUTI : MonoBehaviour
 {
     [Header("Main Objects of the Process")]
     public GameObject form;
-    public MotherController momScript;
     public GameObject tabletCountMaterial;
     public GameObject mayosTable;
-    public GameObject mayosTablePICC;
+    public GameObject mayosTablePICC;   
+    [SerializeField] private GameObject Uniforme;
     public GameObject faucet;
     public GameObject faucetTwo;
+    public Material luvaMaterial;
 
     [Header("Buttons")]
     private Button buttonSelect;
@@ -41,10 +43,6 @@ public class ControllerUTI : MonoBehaviour
     [SerializeField] private List<GameObject> setasBaby;
     [SerializeField] private List<GameObject> setasLavarMaos;
 
-    [SerializeField] private GameObject XROrigin;
-
-    [SerializeField] private GameObject Uniforme;
-
     private void Start()
     {
         form.transform.Find("seta").gameObject.SetActive(true);
@@ -56,18 +54,10 @@ public class ControllerUTI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // case the mom have signed the form, update the form with your name
-        if (momScript.IsSigned())
-        {
-            Transform canvaForm = form.transform.Find("Canvas");
-            if (canvaForm != null)
-                canvaForm.Find("Signature").GetComponent<TextMeshProUGUI>().text = canvaForm.Find("Responsavel").GetComponent<TextMeshProUGUI>().text;
-        }
         if (buttonSelect != null)
             foreach (var button in buttons)
                 button.enabled = false;
         VerifyProcessStateNow();
-        Debug.Log(StateController.Instance.GetState());
     }
 
     public void VerifyProcessStateNow()
@@ -201,7 +191,6 @@ public class ControllerUTI : MonoBehaviour
 
     public void ProcessOrganizarUniforme()
     {
-        Debug.Log("Preparando uniforme...");
         faucet.SetActive(false);
         faucetTwo.SetActive(false);
 
@@ -225,14 +214,32 @@ public class ControllerUTI : MonoBehaviour
         Uniforme.transform.Find("seta").gameObject.SetActive(false);
         Uniforme.transform.Find("uniforme").gameObject.SetActive(false);
         canvasUniform.transform.Find("Button").gameObject.SetActive(false);
-        //adicionar som
         canvasUniform.transform.Find("Finish").gameObject.SetActive(true);
+
+        Transform leftHand = GameObject.FindWithTag("LeftHand").transform;
+        Transform rightHand = GameObject.FindWithTag("RightHand").transform;
+
+        if(leftHand != null && rightHand != null)
+        {
+            SkinnedMeshRenderer leftHandMesh = leftHand.Find("LeftHand").GetChild(1).GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer rightHandMesh = rightHand.Find("RightHand").GetChild(1).GetComponent<SkinnedMeshRenderer>();
+            if(leftHandMesh != null && rightHandMesh != null)
+            {
+                leftHandMesh.material = luvaMaterial;
+                rightHandMesh.material = luvaMaterial;
+            }
+        }
+        else
+        {
+            Debug.Log("Não achou as mãos");
+        }
+        GameObject.FindWithTag("MainCamera").transform.GetChild(2).gameObject.SetActive(true); // gorro
+        GameObject.FindWithTag("MainCamera").transform.GetChild(3).gameObject.SetActive(true); // mascara
+
     }
 
     public void ProcessProcedimentoPICC()
     {
-        if(XROrigin != null)
-            XROrigin.transform.position = teleportationBabys[2].transform.position;
         mayosTablePICC.SetActive(true);
     }
 }

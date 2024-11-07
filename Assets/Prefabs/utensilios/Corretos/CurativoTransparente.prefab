@@ -88,7 +88,6 @@ GameObject:
   - component: {fileID: 1285559772482019188}
   - component: {fileID: 1716145202258800133}
   - component: {fileID: 2562873566104434132}
-  - component: {fileID: 8026406194123578951}
   - component: {fileID: 5602463720496149860}
   m_Layer: 0
   m_Name: CurativoTransparente
@@ -380,19 +379,6 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!114 &8026406194123578951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2341730976466931818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d84465f32e5b66492b0acc66509bcc58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  material: {fileID: 2341730976466931818}
 --- !u!114 &5602463720496149860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -559,7 +545,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7634448278013939341
 RectTransform:
   m_ObjectHideFlags: 0
@@ -598,7 +584,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0

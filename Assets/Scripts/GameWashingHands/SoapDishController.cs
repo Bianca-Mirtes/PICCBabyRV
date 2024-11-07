@@ -23,7 +23,7 @@ public class SoapDishController : MonoBehaviour
     {
         if (handInsideCollisionRay)
         {
-            Debug.Log("Trigger da saboneteira pressionado");
+           Debug.Log("Trigger da saboneteira pressionado");
            triggerSoapDish = value;
         }
     }

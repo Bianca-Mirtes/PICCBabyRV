@@ -5,23 +5,20 @@ using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 using TMPro;
 using Unity.VisualScripting;
+using System.Net.Sockets;
 
 //Controller para lidar com identificar colisões.
 public class IdentifyMaterialsController : MonoBehaviour
 {
-     public int QuantidadeNecessaria = 14;
+    [Header("Attributes")]
+    [SerializeField] private int QuantidadeNecessaria = 12;
+    [SerializeField] private int QuantidadeIncorretos = 0;
+    [SerializeField] private int QuantidadeCorretos = 0;
+    [SerializeField] private int QuantidadePreenchida = 0;
 
-     public TextMeshProUGUI MostrarQuantidadeNecessaria;
-
-     public int QuantidadePreenchida = 0;
-
-     public TextMeshProUGUI MostrarQuantidadePreenchida;
-
-     private int QuantidadeIncorretos = 5;
-
-     private int QuantidadeCorretos = 14;
-
-     private List<(GameObject, GameObject)> SocketMaterialCollections = new List<(GameObject, GameObject)>();
+    public TextMeshProUGUI MostrarQuantidadeNecessaria;
+    public TextMeshProUGUI MostrarQuantidadePreenchida;
+    private List<(GameObject, GameObject)> SocketMaterialCollections = new List<(GameObject, GameObject)>();
 
      void Start()
      {
@@ -30,26 +27,31 @@ public class IdentifyMaterialsController : MonoBehaviour
 
      public void IdentifyTouch(XRSocketInteractor socket)
      {
-          GameObject currentHook = socket.transform.parent.gameObject;
-          GameObject currentMaterial = socket.selectTarget.gameObject;
+        GameObject currentHook = socket.transform.parent.gameObject;
 
-          SocketMaterialCollections.Add((currentHook, currentMaterial));
+        IXRSelectInteractable selectInteractable = socket.GetOldestInteractableSelected();
+        GameObject currentMaterial = selectInteractable.transform.gameObject;
 
-          if (socket.selectTarget.gameObject != null)
-          {
-               Debug.Log("name: " + currentMaterial.name);
-               if (currentMaterial.tag == "CasoPicc")
-                    QuantidadeCorretos++;
-               else if (currentMaterial.tag == "NaoPicc")
-                    QuantidadeIncorretos++;
-               else
-                    Debug.LogError("Objeto não pertence aos materiais");
+        SocketMaterialCollections.Add((currentHook, currentMaterial));
+        currentMaterial.transform.parent = transform.GetChild(0);
 
-               QuantidadePreenchida++;
-               MostrarQuantidadePreenchida.text = QuantidadePreenchida.ToString();
-          }
-          else
-               Debug.LogError("iteractable é null");
+        if (currentMaterial != null)
+        {
+            if (currentMaterial.tag == "CasoPicc")
+            {
+                QuantidadeCorretos++;
+            }
+            else if (currentMaterial.tag == "NaoPicc")
+            {
+                QuantidadeIncorretos++;
+            }
+            else
+                Debug.LogError("Objeto não pertence aos materiais");
+            QuantidadePreenchida++;
+            MostrarQuantidadePreenchida.text = QuantidadePreenchida.ToString();
+        }
+         else
+            Debug.LogError("iteractable é null");
      }
 
      public void RemoveObject(XRSocketInteractor socket)
@@ -57,13 +59,12 @@ public class IdentifyMaterialsController : MonoBehaviour
           (GameObject, GameObject) objFound = new();
           foreach (var obj in SocketMaterialCollections)
           {
-
                if (obj.Item1.name == socket.transform.parent.gameObject.name)
                {
 
-                    if (obj.Item2.tag == "CasoPicc")
+                    if (obj.Item2.CompareTag("CasoPicc"))
                          QuantidadeCorretos = QuantidadeCorretos - 1;
-                    else if (obj.Item2.tag == "NaoPicc")
+                    else if (obj.Item2.CompareTag("NaoPicc"))
                          QuantidadeIncorretos = QuantidadeIncorretos - 1;
                     else
                          Debug.LogError("Objeto não pertence aos materiais");
@@ -87,30 +88,49 @@ public class IdentifyMaterialsController : MonoBehaviour
      /*Quando verificar que todos os items foram preenchidos e estão corretos, entao o enfermeiro pode pegar a caixa de materiais*/
      public void IsRightToAllowGrabOfMaterialTable(TextMeshProUGUI result)
      {
-          if (QuantidadeNecessaria == QuantidadePreenchida)
+          if (QuantidadePreenchida == QuantidadeNecessaria)
           {
                if (QuantidadeCorretos == QuantidadeNecessaria && QuantidadeIncorretos == 0)
                {
-                    Debug.Log("Ativar XRGrab");
                     result.color = Color.black; 
-                    result.text = "Correto!";
+                    result.text = "Parabéns, siga para a proxima etapa!!!";
                     StateController.Instance.SetState(State.LavarMaos);
                     AudioManager.instance.Play("correct_sound");
                 }
                else
                {
-                    Debug.Log("Algum material incorreto");
-                    result.color = UnityEngine.Color.red; 
+                    result.color = Color.red; 
                     result.text = "Há materiais incorretos!";
                     AudioManager.instance.Play("incorrect_sound");
                }
-          }
-          else
-          {
-               Debug.Log("O inventário ainda não está cheio");
-               result.color = UnityEngine.Color.red; 
-               result.text = "Quantidade insuficiente";
-               AudioManager.instance.Play("incorrect_sound");
+        }
+        else
+        {
+            int corrects = 0;
+            int incorrects = 0;
+            foreach (var obj in SocketMaterialCollections)
+            {
+                GameObject objFound = obj.Item2;
+                if (objFound.CompareTag("CasoPicc"))
+                {
+                    corrects++;
+                }
+                else if (objFound.CompareTag("NaoPicc"))
+                {
+                    incorrects++;
+                }
             }
+            if(corrects > 0 && incorrects == 0)
+            {
+                result.color = Color.green;
+                result.text = "Correto!!!";
+                AudioManager.instance.Play("correct_sound");
+            }else if(incorrects > 0)
+            {
+                result.color = Color.red;
+                result.text = $"Há materiais incorretos!!!";
+                AudioManager.instance.Play("incorrect_sound");
+            }
+        }
      }
 }

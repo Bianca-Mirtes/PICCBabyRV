@@ -30,17 +30,17 @@ public class HandController : MonoBehaviour
         if (other.gameObject.tag.Equals("RightHand"))
         {
             righHandInside = true;
-            Debug.Log("Direita entrou!!!");
+            //Debug.Log("Direita entrou!!!");
         }
         if (other.gameObject.tag.Equals("LeftHand"))
         {
             leftHandInside = true;
-            Debug.Log("Esquerda entrou!!");
+            //Debug.Log("Esquerda entrou!!");
         }
 
         if(righHandInside && leftHandInside)
         {
-            Debug.Log("As duas entraram!!");
+            //Debug.Log("As duas entraram!!");
             if (handsWithSoap)
             {
                 GameObject[] systemsBubble = GameObject.FindGameObjectsWithTag("BubbleSoap");
@@ -59,12 +59,12 @@ public class HandController : MonoBehaviour
         if (other.gameObject.tag.Equals("RightHand"))
         {
             righHandInside = false;
-            Debug.Log("Direita saiu!!!");
+            //Debug.Log("Direita saiu!!!");
         }
         if (other.gameObject.tag.Equals("LeftHand"))
         {
             leftHandInside = false;
-            Debug.Log("Esquerda saiu!!");
+            //Debug.Log("Esquerda saiu!!");
         }
 
         if(!righHandInside && !leftHandInside)

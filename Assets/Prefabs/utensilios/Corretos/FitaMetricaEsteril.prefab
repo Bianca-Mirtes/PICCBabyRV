@@ -28,7 +28,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 19044080915609216}
-  m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: -0.084}
   m_LocalScale: {x: 0.0005, y: 0.0005000001, z: 0.0005000001}
   m_ConstrainProportionsScale: 0
@@ -36,10 +36,10 @@ RectTransform:
   - {fileID: 1894754718812698158}
   - {fileID: 3822449972176797015}
   m_Father: {fileID: 4976649987410397950}
-  m_LocalEulerAnglesHint: {x: -90, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.06, y: 0}
+  m_AnchoredPosition: {x: -0.037, y: 0.037}
   m_SizeDelta: {x: 600, y: 161.94376}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8512370912356975628
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 4976649987410397950}
   - component: {fileID: 4541304863990600791}
   - component: {fileID: 4890616750601592826}
-  - component: {fileID: 8655397374159031861}
+  - component: {fileID: 1051147611095433692}
   m_Layer: 0
   m_Name: FitaMetricaEsteril
   m_TagString: CasoPicc
@@ -163,7 +163,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1534784878122819303}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 1.1109328, y: -0.37398618, z: -0.6457789}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -171,7 +171,7 @@ Transform:
   - {fileID: 1705462391837247844}
   - {fileID: 230939966258880887}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!54 &4541304863990600791
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -351,8 +351,8 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!64 &8655397374159031861
-MeshCollider:
+--- !u!65 &1051147611095433692
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -369,10 +369,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -6932969500979562763, guid: 75bbd91b1107bed4cbb3b97cd1844b1d, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.048683405, y: 0.018500682, z: 0.12042996}
+  m_Center: {x: -0.0008212328, y: -0.0005481838, z: -0.087489106}
 --- !u!1 &4406900069865508278
 GameObject:
   m_ObjectHideFlags: 0

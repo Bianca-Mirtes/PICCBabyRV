@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7898258676029077214}
   - component: {fileID: 2320543030612680897}
   - component: {fileID: 9096683592011893336}
-  - component: {fileID: 6234998050582356168}
+  - component: {fileID: 5791642890157172014}
   m_Layer: 0
   m_Name: CompressaEsteril
   m_TagString: CasoPicc
@@ -82,7 +82,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 5
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -102,10 +102,34 @@ MonoBehaviour:
       m_Calls: []
   m_HoverEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6761672262138426480}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_HoverExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6761672262138426480}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_FirstSelectEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -228,8 +252,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6995b5849997947438ac08fabb19e01b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!64 &6234998050582356168
-MeshCollider:
+--- !u!65 &5791642890157172014
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -246,10 +270,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  serializedVersion: 3
+  m_Size: {x: 0.024725478, y: 0.060668908, z: 0.06051167}
+  m_Center: {x: -0.02361194, y: 0.00021581563, z: -0.026318274}
 --- !u!1 &4790042676722553898
 GameObject:
   m_ObjectHideFlags: 0

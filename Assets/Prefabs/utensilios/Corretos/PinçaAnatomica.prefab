@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1608199328173836617}
   - component: {fileID: 3859944843503463965}
   - component: {fileID: 8977131678403668968}
-  - component: {fileID: 7367271034649323556}
   - component: {fileID: 3306049092711250717}
   m_Layer: 0
   m_Name: "Pin\xE7aAnatomica"
@@ -305,19 +304,6 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!114 &7367271034649323556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3419546534129510712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d84465f32e5b66492b0acc66509bcc58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  material: {fileID: 3419546534129510712}
 --- !u!114 &3306049092711250717
 MonoBehaviour:
   m_ObjectHideFlags: 0

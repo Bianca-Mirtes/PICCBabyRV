@@ -222,7 +222,6 @@ GameObject:
   - component: {fileID: 5880117422796827307}
   - component: {fileID: 1646785787402677895}
   - component: {fileID: 6064216425119019561}
-  - component: {fileID: 5089438442680297289}
   - component: {fileID: 7347517776193116496}
   m_Layer: 0
   m_Name: Soro Fisiologico
@@ -514,19 +513,6 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!114 &5089438442680297289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4741579408722150767}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d84465f32e5b66492b0acc66509bcc58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  material: {fileID: 4741579408722150767}
 --- !u!114 &7347517776193116496
 MonoBehaviour:
   m_ObjectHideFlags: 0

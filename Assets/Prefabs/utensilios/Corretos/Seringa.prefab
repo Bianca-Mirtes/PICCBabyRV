@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5905598936779836878}
   - component: {fileID: 4541457245113602703}
   - component: {fileID: 8587079310979370421}
-  - component: {fileID: 1835467875805386564}
   - component: {fileID: 4826574365200721823}
   m_Layer: 0
   m_Name: Seringa
@@ -100,7 +99,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.4518175, y: 2.384169, z: 0.5220032}
+  m_Size: {x: 0.4518175, y: 0.5690026, z: 2.008979}
   m_Center: {x: -0.13047397, y: 0.009368658, z: 0.0029277802}
 --- !u!54 &4541457245113602703
 Rigidbody:
@@ -305,19 +304,6 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!114 &1835467875805386564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1838074242150422625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d84465f32e5b66492b0acc66509bcc58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  material: {fileID: 1838074242150422625}
 --- !u!114 &4826574365200721823
 MonoBehaviour:
   m_ObjectHideFlags: 0

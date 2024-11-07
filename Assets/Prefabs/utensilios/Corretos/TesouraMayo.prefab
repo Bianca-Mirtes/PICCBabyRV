@@ -222,7 +222,6 @@ GameObject:
   - component: {fileID: 7894203403216576166}
   - component: {fileID: 103250856903191437}
   - component: {fileID: 8878820456398723975}
-  - component: {fileID: 3969913818264016569}
   - component: {fileID: 5348114586372061442}
   m_Layer: 0
   m_Name: TesouraMayo
@@ -514,19 +513,6 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!114 &3969913818264016569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5539073110005398095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d84465f32e5b66492b0acc66509bcc58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  material: {fileID: 5539073110005398095}
 --- !u!114 &5348114586372061442
 MonoBehaviour:
   m_ObjectHideFlags: 0

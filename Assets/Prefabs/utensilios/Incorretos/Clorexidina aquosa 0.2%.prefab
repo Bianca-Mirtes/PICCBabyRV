@@ -87,12 +87,11 @@ GameObject:
   - component: {fileID: 814656726721701947}
   - component: {fileID: 1498057858177873619}
   - component: {fileID: 2555777331483665748}
-  - component: {fileID: 7297702399410474495}
   - component: {fileID: 4973125571467404394}
   - component: {fileID: 1585938745009380008}
   m_Layer: 0
   m_Name: Clorexidina aquosa 0.2%
-  m_TagString: CasoPicc
+  m_TagString: NaoPicc
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -359,19 +358,6 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!114 &7297702399410474495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3215694979082545874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d84465f32e5b66492b0acc66509bcc58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  material: {fileID: 3215694979082545874}
 --- !u!114 &4973125571467404394
 MonoBehaviour:
   m_ObjectHideFlags: 0
