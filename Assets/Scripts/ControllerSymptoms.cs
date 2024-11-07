@@ -8,6 +8,7 @@ public class ControllerSymptoms : MonoBehaviour
 {
     protected List<Baby> Babys = new List<Baby>();
     public List<Canvas> canvasSympton = new List<Canvas>();
+    [SerializeField] private List<Transform> incubators;
 
     /** 
         Aqui é inicializado e processado os sintomas para os resceptivos canvas (incubadoras)
@@ -73,6 +74,17 @@ public class ControllerSymptoms : MonoBehaviour
         Baby baby = new Baby(state, description, name, age, motherName, false, record, weight, leito);
         Babys.Add(baby);
         SymptomCollection.Instance.AddSymptom(Babys);
+    }
+
+    public void FindIncubator(Baby baby)
+    {
+        foreach(Transform incubator in incubators)
+        {
+            if (incubator.GetChild(0).Equals(baby))
+            {
+                FindObjectOfType<ControllerUTI>().SetCurrentIncubator(incubator);
+            }
+        }
     }
 
     private void renderCaseOfSymptomInCanva()

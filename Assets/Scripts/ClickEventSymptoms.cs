@@ -44,13 +44,14 @@ public class ClickEventSymptoms : MonoBehaviour
                 TextMeshProUGUI nameBaby = canvaSymptom.transform.Find("Name").GetComponent<TextMeshProUGUI>();
 
                 BabySelect = SymptomCollection.Instance.FindUniqueBaby(nameBaby.text);
-
+  
                 if (btn.tag.Equals("Sim"))
                 {
                     if (BabySelect.StateCasePicc)
                     {
                         RenderForm();
                         BlockOthersCanvasBaby();
+                        FindObjectOfType<ControllerSymptoms>().FindIncubator(BabySelect);
                         StateController.Instance.SetState(State.EntregarFormulario);
                         AudioManager.instance.Play(correct_sound_name);
                         TextResult.text = "Isso mesmo! Agora pegue o formulário que estará na mesa e leve para fora, para que a mãe assine!";

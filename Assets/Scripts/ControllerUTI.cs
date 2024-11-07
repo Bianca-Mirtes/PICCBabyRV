@@ -37,11 +37,13 @@ public class ControllerUTI : MonoBehaviour
     [SerializeField] private List<GameObject> teleportationRecolherMateriais;
     [SerializeField] private List<GameObject> teleportationToForm;
 
-    public Canvas finishProcessFormCanvas;
+    public Transform finishProcessCanvas;
+    private Transform currentIncubator;
 
     [Header("Setas")]
     [SerializeField] private List<GameObject> setasBaby;
     [SerializeField] private List<GameObject> setasLavarMaos;
+
 
     private void Start()
     {
@@ -102,6 +104,11 @@ public class ControllerUTI : MonoBehaviour
         return buttonSelect;
     }
 
+    public void SetCurrentIncubator(Transform incubator)
+    {
+        currentIncubator = incubator;
+    }
+
     public void ToStateDevolverFormulario()
     {
         StateController.Instance.SetState(State.DevolverFormulario);
@@ -113,7 +120,8 @@ public class ControllerUTI : MonoBehaviour
         {
             sucess.Play();
             StateController.Instance.SetState(State.RecolherMateriais);
-            finishProcessFormCanvas.GetComponent<FadeController>().FadeInForFadeOut(5f);
+            finishProcessCanvas.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Parabéns! Você concluiu a etapa de assinatura,\r\nagora prepare-se para a etapa de Coleta dos Materiais!";
+            finishProcessCanvas.GetComponent<FadeController>().FadeInForFadeOut(5f);
         }
     }
 
@@ -186,7 +194,7 @@ public class ControllerUTI : MonoBehaviour
         faucetTwo.SetActive(true);
         ParticleSystem particleSystem = mayosTable.transform.Find("Confetti").GetComponent<ParticleSystem>();
         particleSystem.Play();
-        Invoke("HideMayoTable", 2f);
+        Invoke("HideMayoTable", 5f);
     }
 
     public void ProcessOrganizarUniforme()
@@ -214,7 +222,8 @@ public class ControllerUTI : MonoBehaviour
         Uniforme.transform.Find("seta").gameObject.SetActive(false);
         Uniforme.transform.Find("uniforme").gameObject.SetActive(false);
         canvasUniform.transform.Find("Button").gameObject.SetActive(false);
-        canvasUniform.transform.Find("Finish").gameObject.SetActive(true);
+
+        finishProcessCanvas.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Parabéns! Agora você está pronto para realizar o procedimento cirúrgico...";
 
         Transform leftHand = GameObject.FindWithTag("LeftHand").transform;
         Transform rightHand = GameObject.FindWithTag("RightHand").transform;
@@ -240,6 +249,12 @@ public class ControllerUTI : MonoBehaviour
 
     public void ProcessProcedimentoPICC()
     {
+        Transform player = GameObject.FindWithTag("Player").transform;
+        if(player != null)
+        {
+            player.position = currentIncubator.GetChild(1).position;
+        }
+
         mayosTablePICC.SetActive(true);
     }
 }
