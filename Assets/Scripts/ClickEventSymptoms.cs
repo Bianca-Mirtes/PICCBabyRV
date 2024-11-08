@@ -125,7 +125,6 @@ public class ClickEventSymptoms : MonoBehaviour
         idade.text = baby.Age.ToString();
 
         TextMeshProUGUI responsavel = childCanvaTransform.Find("Responsavel").GetComponent<TextMeshProUGUI>();
-        Debug.Log(baby.MotherName);
         responsavel.text = baby.MotherName;
     }
 

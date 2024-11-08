@@ -11,7 +11,7 @@ using System.Net.Sockets;
 public class IdentifyMaterialsController : MonoBehaviour
 {
     [Header("Attributes")]
-    [SerializeField] private int QuantidadeNecessaria = 12;
+    [SerializeField] private int QuantidadeNecessaria = 13;
     [SerializeField] private int QuantidadeIncorretos = 0;
     [SerializeField] private int QuantidadeCorretos = 0;
     [SerializeField] private int QuantidadePreenchida = 0;
@@ -128,7 +128,7 @@ public class IdentifyMaterialsController : MonoBehaviour
             }else if(incorrects > 0)
             {
                 result.color = Color.red;
-                result.text = $"Há materiais incorretos!!!";
+                result.text = "Há materiais incorretos!!!";
                 AudioManager.instance.Play("incorrect_sound");
             }
         }

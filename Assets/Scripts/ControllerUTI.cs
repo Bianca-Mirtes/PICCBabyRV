@@ -107,6 +107,7 @@ public class ControllerUTI : MonoBehaviour
     public void SetCurrentIncubator(Transform incubator)
     {
         currentIncubator = incubator;
+        Debug.Log(currentIncubator.name);
     }
 
     public void ToStateDevolverFormulario()
@@ -230,12 +231,20 @@ public class ControllerUTI : MonoBehaviour
 
         if(leftHand != null && rightHand != null)
         {
-            SkinnedMeshRenderer leftHandMesh = leftHand.Find("LeftHand").GetChild(1).GetComponent<SkinnedMeshRenderer>();
-            SkinnedMeshRenderer rightHandMesh = rightHand.Find("RightHand").GetChild(1).GetComponent<SkinnedMeshRenderer>();
-            if(leftHandMesh != null && rightHandMesh != null)
+            if(leftHand.name.Equals("LeftHand") && rightHand.name.Equals("RightHand"))
             {
-                leftHandMesh.material = luvaMaterial;
-                rightHandMesh.material = luvaMaterial;
+                leftHand.GetComponent<SkinnedMeshRenderer>().material = luvaMaterial;
+                rightHand.GetComponent<SkinnedMeshRenderer>().material = luvaMaterial;
+            }
+            else
+            {
+                SkinnedMeshRenderer leftHandMesh = leftHand.Find("LeftHand").GetChild(1).GetComponent<SkinnedMeshRenderer>();
+                SkinnedMeshRenderer rightHandMesh = rightHand.Find("RightHand").GetChild(1).GetComponent<SkinnedMeshRenderer>();
+                if (leftHandMesh != null && rightHandMesh != null)
+                {
+                    leftHandMesh.material = luvaMaterial;
+                    rightHandMesh.material = luvaMaterial;
+                }
             }
         }
         else
@@ -245,6 +254,7 @@ public class ControllerUTI : MonoBehaviour
         GameObject.FindWithTag("MainCamera").transform.GetChild(2).gameObject.SetActive(true); // gorro
         GameObject.FindWithTag("MainCamera").transform.GetChild(3).gameObject.SetActive(true); // mascara
 
+        StateController.Instance.SetState(State.ProcedimentoPICC);
     }
 
     public void ProcessProcedimentoPICC()

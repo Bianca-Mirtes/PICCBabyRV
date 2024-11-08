@@ -80,7 +80,8 @@ public class ControllerSymptoms : MonoBehaviour
     {
         foreach(Transform incubator in incubators)
         {
-            if (incubator.GetChild(0).Equals(baby))
+            string incubadora = "Incubadora" + baby.Leito;
+            if (incubadora.Equals(incubator.name))
             {
                 FindObjectOfType<ControllerUTI>().SetCurrentIncubator(incubator);
             }

@@ -1,15 +1,15 @@
 using UnityEngine;
 public class Baby 
 {
-   public string Name { get; }
+    public string Name { get; }
    
-   public bool StateCasePicc { get; }
+    public bool StateCasePicc { get; }
 
-   public string DescriptionSymptom { get; }
+    public string DescriptionSymptom { get; }
 
-   public int Age { get; }
+    public int Age { get; }
 
-   public string MotherName { get; }
+    public string MotherName { get; }
 
     public string Record { get; }
 

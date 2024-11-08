@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 7050665863160285349}
   m_Layer: 0
   m_Name: CampoCirurgico
-  m_TagString: CasoPicc
+  m_TagString: NaoPicc
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
