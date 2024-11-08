@@ -253,12 +253,12 @@ public class ControllerUTI : MonoBehaviour
         }
         GameObject.FindWithTag("MainCamera").transform.GetChild(2).gameObject.SetActive(true); // gorro
         GameObject.FindWithTag("MainCamera").transform.GetChild(3).gameObject.SetActive(true); // mascara
-
         StateController.Instance.SetState(State.ProcedimentoPICC);
     }
 
     public void ProcessProcedimentoPICC()
     {
+        currentIncubator.GetChild(2).GetChild(0).GetChild(0).gameObject.SetActive(false);
         Transform player = GameObject.FindWithTag("Player").transform;
         if(player != null)
         {
