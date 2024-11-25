@@ -260,11 +260,13 @@ public class ControllerUTI : MonoBehaviour
     {
         currentIncubator.GetChild(2).GetChild(0).GetChild(0).gameObject.SetActive(false);
         Transform player = GameObject.FindWithTag("Player").transform;
+        currentIncubator.GetChild(1).gameObject.SetActive(true);
         if(player != null)
         {
-            player.position = currentIncubator.GetChild(1).position;
+            player.position = new Vector3(-13.6668978f, -0.000999927521f, -4.36055994f);
         }
-
+        currentIncubator.GetChild(3).gameObject.SetActive(true);
+        mayosTablePICC.transform.position = currentIncubator.GetChild(3).position;
         mayosTablePICC.SetActive(true);
     }
 }
