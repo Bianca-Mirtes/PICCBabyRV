@@ -6,5 +6,14 @@ public enum State
     RecolherMateriais,
     LavarMaos,
     PrepararUniforme,
-    ProcedimentoPICC
+    MensurarCateter,
+    PrepararCampo,
+    RealizarAntissepsia,
+    PrepararConjuntoIntrodutor,
+    PrepararTorniquete,
+    RealizarPunção,
+    RealizarTesteDePermeabilidade,
+    FecharSistema,
+    DescartarMateriais
+
 }

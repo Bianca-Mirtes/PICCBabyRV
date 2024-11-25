@@ -79,8 +79,8 @@ public class ControllerUTI : MonoBehaviour
         if (StateController.Instance.CompareStates(State.PrepararUniforme))
             ProcessOrganizarUniforme();
         else
-        if (StateController.Instance.CompareStates(State.ProcedimentoPICC))
-            ProcessProcedimentoPICC();
+        if (StateController.Instance.CompareStates(State.MensurarCateter))
+            ProcessMensurarCateter();
     }
 
     public void StartProcediment(Button btn)
@@ -253,10 +253,10 @@ public class ControllerUTI : MonoBehaviour
         }
         GameObject.FindWithTag("MainCamera").transform.GetChild(2).gameObject.SetActive(true); // gorro
         GameObject.FindWithTag("MainCamera").transform.GetChild(3).gameObject.SetActive(true); // mascara
-        StateController.Instance.SetState(State.ProcedimentoPICC);
+        StateController.Instance.SetState(State.MensurarCateter);
     }
 
-    public void ProcessProcedimentoPICC()
+    public void ProcessMensurarCateter()
     {
         currentIncubator.GetChild(2).GetChild(0).GetChild(0).gameObject.SetActive(false);
         Transform player = GameObject.FindWithTag("Player").transform;
