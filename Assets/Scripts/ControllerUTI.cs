@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -13,7 +15,6 @@ public class ControllerUTI : MonoBehaviour
     public GameObject form;
     public GameObject tabletCountMaterial;
     public GameObject mayosTable;
-    public GameObject mayosTablePICC;   
     [SerializeField] private GameObject Uniforme;
     public GameObject faucet;
     public GameObject faucetTwo;
@@ -25,6 +26,7 @@ public class ControllerUTI : MonoBehaviour
 
     [SerializeField]
     private GameObject pointFinallyOfMesaMayo;
+    private ParticleSystem tempConfetti;
 
     [SerializeField]
     private List<XRSimpleInteractable> interactablesBabys;
@@ -40,6 +42,9 @@ public class ControllerUTI : MonoBehaviour
     public Transform finishProcessCanvas;
     private Transform currentIncubator;
 
+    public List<GameObject> mayosTablePICC;
+    public GameObject currentMayosTablePICC;
+
     [Header("Setas")]
     [SerializeField] private List<GameObject> setasBaby;
     [SerializeField] private List<GameObject> setasLavarMaos;
@@ -50,7 +55,8 @@ public class ControllerUTI : MonoBehaviour
         form.transform.Find("seta").gameObject.SetActive(true);
         AudioManager.instance.Play("background");
         Uniforme.SetActive(false);
-        mayosTablePICC.SetActive(false);
+        foreach(GameObject obj in mayosTablePICC)
+            obj.SetActive(false);
     }
 
     // Update is called once per frame
@@ -81,6 +87,29 @@ public class ControllerUTI : MonoBehaviour
         else
         if (StateController.Instance.CompareStates(State.MensurarCateter))
             ProcessMensurarCateter();
+        else
+        if (StateController.Instance.CompareStates(State.PrepararCampo))
+            Debug.Log("");
+
+    }
+
+    public void VerifUpdateSlider(Slider slider)
+    {
+        if(slider.value == 1)
+        {
+            StateController.Instance.SetState(State.PrepararCampo);
+            tempConfetti.Play();
+        }
+    }
+
+    public void GetConfetti(ParticleSystem confetti)
+    {
+        tempConfetti = confetti;
+    }
+
+    public void GetCurrentMayosTablePICC(GameObject mayosTablePICC)
+    {
+        currentMayosTablePICC = mayosTablePICC;
     }
 
     public void StartProcediment(Button btn)
@@ -266,7 +295,46 @@ public class ControllerUTI : MonoBehaviour
             player.position = new Vector3(-13.6668978f, -0.000999927521f, -4.36055994f);
         }
         currentIncubator.GetChild(3).gameObject.SetActive(true);
-        mayosTablePICC.transform.position = currentIncubator.GetChild(3).position;
-        mayosTablePICC.SetActive(true);
+        currentMayosTablePICC.SetActive(true);
+    }
+
+    private void ProcessPrepararCampo()
+    {
+
+    }
+
+    private void ProcessRealizarAntissepsia()
+    {
+
+    }
+
+    private void ProcessPrepararConjuntoIntrodutor()
+    {
+
+    }
+
+    private void ProcessPrepararTorniquete()
+    {
+
+    }
+
+    private void ProcessRealizarPunção()
+    {
+
+    }
+
+    private void ProcessRealizarTesteDePermeabilidade()
+    {
+
+    }
+
+    private void ProcessFecharSistema()
+    {
+
+    }
+
+    private void ProcessDescartarMateriais()
+    {
+
     }
 }

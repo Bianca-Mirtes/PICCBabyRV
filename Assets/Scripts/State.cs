@@ -15,5 +15,4 @@ public enum State
     RealizarTesteDePermeabilidade,
     FecharSistema,
     DescartarMateriais
-
 }
