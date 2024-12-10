@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.15062763, g: 0.24718164, b: 0.6368698, a: 1}
+  m_IndirectSpecularColor: {r: 0.15062763, g: 0.24718164, b: 0.6368697, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3113,6 +3113,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  incubators: []
 --- !u!114 &1390958102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3126,12 +3127,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   form: {fileID: 0}
-  momScript: {fileID: 0}
   tabletCountMaterial: {fileID: 0}
   mayosTable: {fileID: 0}
-  mayosTablePICC: {fileID: 0}
+  Uniforme: {fileID: 0}
   faucet: {fileID: 0}
   faucetTwo: {fileID: 0}
+  luvaMaterial: {fileID: 0}
   buttons:
   - {fileID: 0}
   - {fileID: 0}
@@ -3148,11 +3149,12 @@ MonoBehaviour:
   - {fileID: 0}
   teleportationToForm:
   - {fileID: 0}
-  finishProcessFormCanvas: {fileID: 0}
+  finishProcessCanvas: {fileID: 0}
+  mayosTablePICC:
+  - {fileID: 0}
+  currentMayosTablePICC: {fileID: 0}
   setasBaby: []
   setasLavarMaos: []
-  XROrigin: {fileID: 0}
-  Uniforme: {fileID: 0}
 --- !u!4 &1390958103
 Transform:
   m_ObjectHideFlags: 0

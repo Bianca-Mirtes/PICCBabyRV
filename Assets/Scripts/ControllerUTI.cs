@@ -26,7 +26,10 @@ public class ControllerUTI : MonoBehaviour
 
     [SerializeField]
     private GameObject pointFinallyOfMesaMayo;
+
+    [Header("Objetos Temporarios")]
     private ParticleSystem tempConfetti;
+    private GameObject tempMaterial;
 
     [SerializeField]
     private List<XRSimpleInteractable> interactablesBabys;
@@ -93,12 +96,22 @@ public class ControllerUTI : MonoBehaviour
 
     }
 
+    public void GetCurrentMaterial(GameObject material)
+    {
+        tempMaterial = material;
+    }
+
     public void VerifUpdateSlider(Slider slider)
     {
         if(slider.value == 1)
         {
             StateController.Instance.SetState(State.PrepararCampo);
+            Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
+            table.GetChild(0).GetChild(2).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Utilize os panos estereis para preparar o campo cirurgico!";
+            table.GetChild(0).GetChild(2).GetChild(2).gameObject.SetActive(false);
+            tempMaterial.SetActive(true);
             tempConfetti.Play();
+            slider.gameObject.SetActive(false);
         }
     }
 
@@ -298,9 +311,17 @@ public class ControllerUTI : MonoBehaviour
         currentMayosTablePICC.SetActive(true);
     }
 
+    public void verifSocketsSurgicalField(XRSocketInteractor socket)
+    {
+        IXRSelectInteractable selectInteractable = socket.GetOldestInteractableSelected();
+        GameObject currentMaterial = selectInteractable.transform.gameObject;
+        if(currentMaterial != null)
+            Destroy(currentMaterial);
+    }
+
     private void ProcessPrepararCampo()
     {
-
+       
     }
 
     private void ProcessRealizarAntissepsia()

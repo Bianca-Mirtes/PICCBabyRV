@@ -21,8 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Samples_RoughGrey
-  m_Shader: {fileID: -6465566751694194690, guid: 181d9f8961a46b84fa2b2acfc30cdf9c,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 181d9f8961a46b84fa2b2acfc30cdf9c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -171,7 +170,7 @@ Material:
     - _AlphaSrcBlend: 1
     - _Ambient_Occlusion_R: 1
     - _Anisotropy: 0
-    - _BUILTIN_QueueControl: -1
+    - _BUILTIN_QueueControl: 1
     - _BUILTIN_QueueOffset: 0
     - _BlendMode: 0
     - _CoatMask: 0
