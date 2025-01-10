@@ -3,11 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
+using static UnityEngine.Rendering.DebugUI;
 
 public class ControllerUTI : MonoBehaviour
 {
@@ -21,8 +20,8 @@ public class ControllerUTI : MonoBehaviour
     public Material luvaMaterial;
 
     [Header("Buttons")]
-    private Button buttonSelect;
-    public List<Button> buttons;
+    private UnityEngine.UI.Button buttonSelect;
+    public List<UnityEngine.UI.Button> buttons;
 
     [SerializeField]
     private GameObject pointFinallyOfMesaMayo;
@@ -30,6 +29,7 @@ public class ControllerUTI : MonoBehaviour
     [Header("Objetos Temporarios")]
     private ParticleSystem tempConfetti;
     private GameObject tempMaterial;
+    private int countSurgicalFields = 0;
 
     [SerializeField]
     private List<XRSimpleInteractable> interactablesBabys;
@@ -92,7 +92,7 @@ public class ControllerUTI : MonoBehaviour
             ProcessMensurarCateter();
         else
         if (StateController.Instance.CompareStates(State.PrepararCampo))
-            Debug.Log("");
+            ProcessPrepararCampo();
 
     }
 
@@ -125,7 +125,7 @@ public class ControllerUTI : MonoBehaviour
         currentMayosTablePICC = mayosTablePICC;
     }
 
-    public void StartProcediment(Button btn)
+    public void StartProcediment(UnityEngine.UI.Button btn)
     {
         buttonSelect = btn;
     }
@@ -141,7 +141,7 @@ public class ControllerUTI : MonoBehaviour
         buttonSelect = null;
     }
 
-    public Button GetButtonSelect()
+    public UnityEngine.UI.Button GetButtonSelect()
     {
         return buttonSelect;
     }
@@ -316,12 +316,23 @@ public class ControllerUTI : MonoBehaviour
         IXRSelectInteractable selectInteractable = socket.GetOldestInteractableSelected();
         GameObject currentMaterial = selectInteractable.transform.gameObject;
         if(currentMaterial != null)
+        {
             Destroy(currentMaterial);
+        }
+        countSurgicalFields++;
     }
 
     private void ProcessPrepararCampo()
     {
-       
+       if(countSurgicalFields == 2)
+        {
+            StateController.Instance.SetState(State.RealizarAntissepsia);
+            Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
+            table.GetChild(0).GetChild(2).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Pegue o soro fisiologico e lubrifique o cateter intravenoso:";
+            table.GetChild(0).GetChild(2).GetChild(2).gameObject.SetActive(false);
+            tempMaterial.SetActive(true);
+            tempConfetti.Play();
+        }
     }
 
     private void ProcessRealizarAntissepsia()
