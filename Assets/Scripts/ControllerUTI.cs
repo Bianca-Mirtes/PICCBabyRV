@@ -5,6 +5,7 @@ using System.Net.NetworkInformation;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 using UnityEngine.XR.Interaction.Toolkit;
 using static UnityEngine.Rendering.DebugUI;
 
@@ -88,12 +89,19 @@ public class ControllerUTI : MonoBehaviour
         if (StateController.Instance.CompareStates(State.PrepararUniforme))
             ProcessOrganizarUniforme();
         else
-        if (StateController.Instance.CompareStates(State.MensurarCateter))
-            ProcessMensurarCateter();
-        else
         if (StateController.Instance.CompareStates(State.PrepararCampo))
             ProcessPrepararCampo();
-
+        else
+        if (StateController.Instance.CompareStates(State.MensurarCateter))
+            ProcessMensurarCateter();
+        else if (StateController.Instance.CompareStates(State.RealizarAntissepsia))
+            ProcessRealizarAntissepsia();
+        else if (StateController.Instance.CompareStates(State.PrepararConjuntoIntrodutor))
+            ProcessPrepararConjuntoIntrodutor();
+        else if (StateController.Instance.CompareStates(State.PrepararTorniquete))
+            ProcessPrepararTorniquete();
+        else if (StateController.Instance.CompareStates(State.RealizarPunção))
+            ProcessRealizarPunção();
     }
 
     public void GetCurrentMaterial(GameObject material)
@@ -101,13 +109,13 @@ public class ControllerUTI : MonoBehaviour
         tempMaterial = material;
     }
 
-    public void VerifUpdateSlider(Slider slider)
+    public void VerifUpdateSlider(UnityEngine.UI.Slider slider)
     {
         if(slider.value == 1)
         {
-            StateController.Instance.SetState(State.PrepararCampo);
+            StateController.Instance.SetState(State.RealizarAntissepsia);
             Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
-            table.GetChild(0).GetChild(2).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Utilize os panos estereis para preparar o campo cirurgico!";
+            table.GetChild(0).GetChild(2).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Pegue a clorexidina e realize a antissepsia do local da inserção:";
             table.GetChild(0).GetChild(2).GetChild(2).gameObject.SetActive(false);
             tempMaterial.SetActive(true);
             tempConfetti.Play();
@@ -295,7 +303,7 @@ public class ControllerUTI : MonoBehaviour
         }
         GameObject.FindWithTag("MainCamera").transform.GetChild(2).gameObject.SetActive(true); // gorro
         GameObject.FindWithTag("MainCamera").transform.GetChild(3).gameObject.SetActive(true); // mascara
-        StateController.Instance.SetState(State.MensurarCateter);
+        StateController.Instance.SetState(State.PrepararCampo);
     }
 
     public void ProcessMensurarCateter()
@@ -326,18 +334,30 @@ public class ControllerUTI : MonoBehaviour
     {
        if(countSurgicalFields == 2)
         {
-            StateController.Instance.SetState(State.RealizarAntissepsia);
+            StateController.Instance.SetState(State.LubrificarCateter);
             Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
             table.GetChild(0).GetChild(2).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Pegue o soro fisiologico e lubrifique o cateter intravenoso:";
             table.GetChild(0).GetChild(2).GetChild(2).gameObject.SetActive(false);
             tempMaterial.SetActive(true);
             tempConfetti.Play();
+            
+            /*StateController.Instance.SetState(State.PrepararCampo);
+            Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
+            table.GetChild(0).GetChild(2).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Faça a mensuração do tamanho do Cateter:";
+            table.GetChild(0).GetChild(2).GetChild(2).gameObject.SetActive(false);
+            tempMaterial.SetActive(true);
+            tempConfetti.Play();*/
         }
+    }
+
+    private void ProcessLubrificarCateter()
+    {
+        
     }
 
     private void ProcessRealizarAntissepsia()
     {
-
+        
     }
 
     private void ProcessPrepararConjuntoIntrodutor()
