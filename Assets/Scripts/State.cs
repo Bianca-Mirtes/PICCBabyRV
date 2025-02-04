@@ -12,7 +12,7 @@ public enum State
     RealizarAntissepsia,
     PrepararConjuntoIntrodutor,
     PrepararTorniquete,
-    RealizarPunção,
+    RealizarPuncture,
     RealizarTesteDePermeabilidade,
     FecharSistema,
     DescartarMateriais
