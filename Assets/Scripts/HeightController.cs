@@ -8,6 +8,12 @@ public class HeightController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Transform player = GameObject.FindWithTag("Player").transform;
+        Transform initialPos = GameObject.Find("InitialPosition").transform;
+
+        player.position = initialPos.position;
+        player.rotation = initialPos.rotation;
+
         height = transform.position.y;
     }
 

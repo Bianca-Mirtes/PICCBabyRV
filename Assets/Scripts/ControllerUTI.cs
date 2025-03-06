@@ -1,13 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Net.NetworkInformation;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using UnityEngine.XR.Interaction.Toolkit;
-using static UnityEngine.Rendering.DebugUI;
 
 public class ControllerUTI : MonoBehaviour
 {
@@ -19,6 +17,7 @@ public class ControllerUTI : MonoBehaviour
     public GameObject faucet;
     public GameObject faucetTwo;
     public Material luvaMaterial;
+    public Material handMaterial;
 
     [Header("Buttons")]
     private UnityEngine.UI.Button buttonSelect;
@@ -32,6 +31,7 @@ public class ControllerUTI : MonoBehaviour
     private GameObject tempMaterial;
     private int countSurgicalFields = 0;
     private GameObject currentSlider;
+    private GameObject currentPoints;
 
     [SerializeField]
     private List<XRSimpleInteractable> interactablesBabys;
@@ -53,7 +53,6 @@ public class ControllerUTI : MonoBehaviour
     [Header("Setas")]
     [SerializeField] private List<GameObject> setasBaby;
     [SerializeField] private List<GameObject> setasLavarMaos;
-
 
     private void Start()
     {
@@ -111,22 +110,6 @@ public class ControllerUTI : MonoBehaviour
         tempMaterial = material;
     }
 
-    public void VerifUpdateSlider(UnityEngine.UI.Slider slider)
-    {
-        if(slider.value == 1)
-        {
-            StateController.Instance.SetState(State.RealizarAntissepsia);
-            Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
-            table.GetChild(0).GetChild(3).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Antissepsia Local: Pegue a clorexidina e realize a antissepsia do local da inserção:";
-            table.GetChild(0).GetChild(3).GetChild(2).GetComponent<TextMeshProUGUI>().text = " Pegue a pinça e pegue um pedaço de compressa esteril";
-            table.GetChild(0).GetChild(2).gameObject.SetActive(false);
-            table.GetChild(0).GetChild(3).gameObject.SetActive(true);
-            tempMaterial.SetActive(true);
-            tempConfetti.Play();
-            slider.gameObject.SetActive(false);
-        }
-    }
-
     public void GetConfetti(ParticleSystem confetti)
     {
         tempConfetti = confetti;
@@ -162,12 +145,35 @@ public class ControllerUTI : MonoBehaviour
     public void SetCurrentIncubator(Transform incubator)
     {
         currentIncubator = incubator;
-        currentIncubator.GetChild(2).GetChild(0).GetChild(0).gameObject.SetActive(false);
+        currentIncubator.GetChild(2).gameObject.SetActive(false);
+        currentIncubator.GetChild(3).gameObject.SetActive(false);
+        currentIncubator.GetChild(1).GetChild(0).GetChild(0).gameObject.SetActive(false);
     }
 
-    public void SetCurrentSlider(GameObject slider)
+    public void SetRegion(bool isSuperiorMembers)
     {
-        currentSlider = slider;
+        if (isSuperiorMembers)
+        {
+            currentSlider = currentIncubator.GetChild(0).GetChild(0).GetChild(0).gameObject;
+            currentPoints = currentIncubator.GetChild(0).GetChild(1).GetChild(1).gameObject;
+
+            Destroy(currentIncubator.GetChild(0).GetChild(0).GetChild(1).gameObject);
+            Destroy(currentIncubator.GetChild(0).GetChild(1).GetChild(2).gameObject);
+
+            currentIncubator.GetChild(0).GetChild(2).gameObject.SetActive(true);
+            currentIncubator.GetChild(0).GetChild(3).gameObject.SetActive(true);
+        }
+        else
+        {
+            currentSlider = currentIncubator.GetChild(0).GetChild(0).GetChild(1).gameObject;
+            currentPoints = currentIncubator.GetChild(0).GetChild(1).GetChild(2).gameObject;
+
+            Destroy(currentIncubator.GetChild(0).GetChild(0).GetChild(0).gameObject);
+            Destroy(currentIncubator.GetChild(0).GetChild(1).GetChild(1).gameObject);
+
+            currentIncubator.GetChild(0).GetChild(2).gameObject.SetActive(true);
+            currentIncubator.GetChild(0).GetChild(4).gameObject.SetActive(true);
+        }
     }
 
     public void ToStateDevolverFormulario()
@@ -183,6 +189,7 @@ public class ControllerUTI : MonoBehaviour
             StateController.Instance.SetState(State.RecolherMateriais);
             finishProcessCanvas.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Parabéns! Você concluiu a etapa de assinatura,\r\nagora prepare-se para a etapa de Coleta dos Materiais!";
             finishProcessCanvas.GetComponent<FadeController>().FadeInForFadeOut(5f);
+            StateController.Instance.SetState(State.RecolherMateriais);
         }
     }
 
@@ -277,6 +284,12 @@ public class ControllerUTI : MonoBehaviour
        tabletCountMaterial.SetActive(false);
     }
 
+    public void SetMinigameAntissepsia()
+    {
+        currentPoints.SetActive(true);
+        currentSlider.SetActive(true);
+    }
+
     public void ClickUniforme()
     {
         Canvas canvasUniform =  Uniforme.transform.Find("Canvas").GetComponent<Canvas>();
@@ -313,7 +326,7 @@ public class ControllerUTI : MonoBehaviour
         }
         GameObject.FindWithTag("MainCamera").transform.GetChild(2).gameObject.SetActive(true); // gorro
         GameObject.FindWithTag("MainCamera").transform.GetChild(3).gameObject.SetActive(true); // mascara
-        StateController.Instance.SetState(State.PrepararCampo);
+        StateController.Instance.SetState(State.MensurarCateter);
     }
 
     public void verifSocketsSurgicalField(XRSocketInteractor socket)
@@ -326,35 +339,81 @@ public class ControllerUTI : MonoBehaviour
         countSurgicalFields++;
     }
 
-    private void ProcessPrepararCampo()
+    public void VerifUpdateSlider(UnityEngine.UI.Slider slider)
     {
-       if(countSurgicalFields == 2)
+        if (slider.value == 1)
         {
-            StateController.Instance.SetState(State.LubrificarCateter);
             Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
-            table.GetChild(0).GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Lubrificação do Cateter intravenoso:";
-            table.GetChild(0).GetChild(1).GetChild(1).gameObject.SetActive(true);
-            table.GetChild(0).GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Pegue a Seringa e encha com soro fisiologico";
+            table.GetChild(0).GetChild(3).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Prepare o Campo Cirúrgico:";
+            table.GetChild(0).GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Utilize os panos estereis para preparar o campo cirurgico!";
+            table.GetChild(0).GetChild(3).gameObject.SetActive(true);
+            table.GetChild(0).GetChild(2).gameObject.SetActive(false);
+            currentSlider.SetActive(false);
             tempMaterial.SetActive(true);
             tempConfetti.Play();
+            StateController.Instance.SetState(State.PrepararCampo);
         }
     }
 
-    public void ProcessLubrificarCateter()
+    public void ProcessMensurarCateter()
     {
-        StateController.Instance.SetState(State.MensurarCateter);
         Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
         table.GetChild(0).GetChild(2).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Faça a mensuração do tamanho do Cateter:";
         table.GetChild(0).GetChild(1).gameObject.SetActive(false);
         table.GetChild(0).GetChild(2).gameObject.SetActive(true);
         currentSlider.SetActive(true);
+        StateController.Instance.SetState(State.PrepararCampo);
+    }
+
+    private void ProcessPrepararCampo()
+    {
+       if(countSurgicalFields == 2)
+        {
+            Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
+            table.GetChild(0).GetChild(3).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Lubrificação do Cateter intravenoso:";
+            table.GetChild(0).GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Pegue a Seringa e encha-a com soro fisiologico";
+            tempMaterial.SetActive(true);
+            tempConfetti.Play();
+            StateController.Instance.SetState(State.LubrificarCateter);
+        }
+    }
+
+    public void ProcessLubrificarCateter()
+    {
+        Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
+        table.GetChild(0).GetChild(3).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Preparação do Cateter:";
+        table.GetChild(0).GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>().text = " Pegue o garrote e realize o corte do cateter no comprimento certo";
         tempMaterial.SetActive(true);
         tempConfetti.Play();
+        currentSlider = currentIncubator.GetChild(0).GetChild(1).GetChild(0).gameObject;
+        StateController.Instance.SetState(State.PrepararCateter);
+    }
+
+    private void ProcessPrepararCateter()
+    {
+        Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
+        table.GetChild(0).GetChild(3).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Antissepsia Local:";
+        table.GetChild(0).GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>().text = " Pegue a pinça e encaixe um pedaço de compressa esteril na ponta";
+        tempMaterial.SetActive(true);
+        tempConfetti.Play();
+        currentSlider = currentIncubator.GetChild(0).GetChild(1).GetChild(0).gameObject;
+        StateController.Instance.SetState(State.RealizarAntissepsia);
     }
 
     private void ProcessRealizarAntissepsia()
     {
-        
+        if(currentSlider.GetComponent<UnityEngine.UI.Slider>().value == 1)
+        {
+            Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
+            table.GetChild(0).GetChild(2).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Realize a troca de luvas:";
+            table.GetChild(0).GetChild(1).gameObject.SetActive(false);
+            table.GetChild(0).GetChild(2).gameObject.SetActive(true);
+            currentSlider.SetActive(true);
+            tempMaterial.SetActive(true);
+            tempConfetti.Play();
+
+            StateController.Instance.SetState(State.PrepararConjuntoIntrodutor);
+        }
     }
 
     private void ProcessPrepararConjuntoIntrodutor()
