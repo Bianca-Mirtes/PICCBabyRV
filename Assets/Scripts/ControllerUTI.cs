@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -91,18 +92,24 @@ public class ControllerUTI : MonoBehaviour
         else
         if (StateController.Instance.CompareStates(State.PrepararCampo))
             ProcessPrepararCampo();
-        else 
+        else
         if (StateController.Instance.CompareStates(State.RealizarAntissepsia))
             ProcessRealizarAntissepsia();
-        else 
+        else
         if (StateController.Instance.CompareStates(State.PrepararConjuntoIntrodutor))
             ProcessPrepararConjuntoIntrodutor();
-        else 
-        if (StateController.Instance.CompareStates(State.PrepararTorniquete))
-            ProcessPrepararTorniquete();
-        else 
+        else
         if (StateController.Instance.CompareStates(State.RealizarPuncture))
-            ProcessRealizarPunção();
+            ProcessRealizarPuncture();
+        else
+        if (StateController.Instance.CompareStates(State.RealizarTesteDePermeabilidade))
+            ProcessRealizarTesteDePermeabilidade();
+        else
+        if (StateController.Instance.CompareStates(State.FecharSistema))
+            ProcessFecharSistema();
+        else
+        if (StateController.Instance.CompareStates(State.DescartarMateriais))
+            ProcessDescartarMateriais();
     }
 
     public void GetCurrentMaterial(GameObject material)
@@ -246,7 +253,6 @@ public class ControllerUTI : MonoBehaviour
             teleportationRecolherMateriais[i].SetActive(true);
     }
 
-
     public void ProcessLavarAsMaos()
     {
         for (int i = 0; i < teleportationRecolherMateriais.Count; i++)
@@ -333,6 +339,7 @@ public class ControllerUTI : MonoBehaviour
     {
         IXRSelectInteractable selectInteractable = socket.GetOldestInteractableSelected();
         GameObject currentMaterial = selectInteractable.transform.gameObject;
+
         if(currentMaterial != null)
             Destroy(currentMaterial);
 
@@ -416,17 +423,29 @@ public class ControllerUTI : MonoBehaviour
         }
     }
 
-    private void ProcessPrepararConjuntoIntrodutor()
+    public void ProcessPrepararConjuntoIntrodutor()
     {
-
+        Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
+        table.GetChild(0).GetChild(2).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Prepare o conjunto introdutor: Pegue a Seringa e preencha-a com soro fisiologico";
+        table.GetChild(0).GetChild(1).gameObject.SetActive(false);
+        table.GetChild(0).GetChild(2).gameObject.SetActive(true);
+        currentSlider.SetActive(true);
+        tempMaterial.SetActive(true);
+        tempConfetti.Play();
     }
 
-    private void ProcessPrepararTorniquete()
+    public void ProcessPrepararTorniquete(XRSocketInteractor socket)
     {
+        IXRSelectInteractable selectInteractable = socket.GetOldestInteractableSelected();
+        GameObject currentMaterial = selectInteractable.transform.gameObject;
 
+        if (currentMaterial != null)
+            Destroy(currentMaterial);
+
+        StateController.Instance.SetState(State.RealizarPuncture);
     }
 
-    private void ProcessRealizarPunção()
+    private void ProcessRealizarPuncture()
     {
 
     }
