@@ -1,31 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ClorexidinaController : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.CompareTag("Gaze"))
-            GetComponent<Animator>().Play("PutClore");
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Gaze"))
+        if (collision.gameObject.CompareTag("Gaze"))
         {
-            GetComponent<Animator>().Play("StopClore");
-            FindFirstObjectByType<ControllerUTI>().SetMinigameAntissepsia();
+            transform.GetChild(1).GetChild(2).GetComponent<ParticleSystem>().Play();
+            Invoke("StartMinigame", 2f);
         }
     }
-    public void PutClorexidina()
-    {
-        transform.GetChild(1).GetChild(2).GetComponent<ParticleSystem>().Play();
-    }
 
-    public void StopPuttingCloredixina()
-    {
+    private void StartMinigame() {
         transform.GetChild(1).GetChild(2).GetComponent<ParticleSystem>().Stop();
+        FindFirstObjectByType<ControllerUTI>().SetMinigameAntissepsia();
     }
 }

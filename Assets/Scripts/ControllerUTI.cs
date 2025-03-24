@@ -19,6 +19,7 @@ public class ControllerUTI : MonoBehaviour
     public GameObject faucetTwo;
     public Material luvaMaterial;
     public Material handMaterial;
+    public GameObject luvas;
 
     [Header("Buttons")]
     private UnityEngine.UI.Button buttonSelect;
@@ -292,8 +293,11 @@ public class ControllerUTI : MonoBehaviour
 
     public void SetMinigameAntissepsia()
     {
-        currentPoints.SetActive(true);
+        Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
+        table.GetChild(0).GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Se aproxime do paciente e aplique a clorexidina no local da inserção para realizar a antissepsia";
         currentSlider.SetActive(true);
+        currentPoints.SetActive(true);
+        tempConfetti.Play();
     }
 
     public void ClickUniforme()
@@ -379,6 +383,7 @@ public class ControllerUTI : MonoBehaviour
             Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
             table.GetChild(0).GetChild(3).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Lubrificação do Cateter intravenoso:";
             table.GetChild(0).GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Pegue a Seringa e encha-a com soro fisiologico";
+            table.GetChild(0).GetChild(3).GetChild(1).gameObject.SetActive(true);
             tempMaterial.SetActive(true);
             tempConfetti.Play();
             StateController.Instance.SetState(State.LubrificarCateter);
@@ -389,14 +394,14 @@ public class ControllerUTI : MonoBehaviour
     {
         Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
         table.GetChild(0).GetChild(3).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Preparação do Cateter:";
-        table.GetChild(0).GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>().text = " Pegue o garrote e realize o corte do cateter no comprimento certo";
+        table.GetChild(0).GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>().text = " Pegue a tesoura de Mayo reta e realize o corte do cateter no comprimento certo";
         tempMaterial.SetActive(true);
         tempConfetti.Play();
         currentSlider = currentIncubator.GetChild(0).GetChild(1).GetChild(0).gameObject;
         StateController.Instance.SetState(State.PrepararCateter);
     }
 
-    private void ProcessPrepararCateter()
+    public void ProcessPrepararCateter()
     {
         Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
         table.GetChild(0).GetChild(3).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Antissepsia Local:";
@@ -411,16 +416,60 @@ public class ControllerUTI : MonoBehaviour
     {
         if(currentSlider.GetComponent<UnityEngine.UI.Slider>().value == 1)
         {
+            Transform leftHand = GameObject.FindWithTag("LeftHand").transform;
+            Transform rightHand = GameObject.FindWithTag("RightHand").transform;
+            if (leftHand != null && rightHand != null)
+            {
+                if (leftHand.name.Equals("LeftHand") && rightHand.name.Equals("RightHand"))
+                {
+                    leftHand.GetComponent<SkinnedMeshRenderer>().material = luvaMaterial;
+                    rightHand.GetComponent<SkinnedMeshRenderer>().material = luvaMaterial;
+                }
+                else
+                {
+                    SkinnedMeshRenderer leftHandMesh = leftHand.Find("LeftHand").GetChild(1).GetComponent<SkinnedMeshRenderer>();
+                    SkinnedMeshRenderer rightHandMesh = rightHand.Find("RightHand").GetChild(1).GetComponent<SkinnedMeshRenderer>();
+                    if (leftHandMesh != null && rightHandMesh != null)
+                    {
+                        leftHandMesh.material = handMaterial;
+                        rightHandMesh.material = handMaterial;
+                    }
+                }
+            }
+
             Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
-            table.GetChild(0).GetChild(2).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Realize a troca de luvas:";
-            table.GetChild(0).GetChild(1).gameObject.SetActive(false);
-            table.GetChild(0).GetChild(2).gameObject.SetActive(true);
-            currentSlider.SetActive(true);
+            table.GetChild(0).GetChild(4).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Realize a troca de luvas:";
+            table.GetChild(0).GetChild(3).gameObject.SetActive(false);
+            table.GetChild(0).GetChild(4).gameObject.SetActive(true);
+            tempMaterial = luvas;
             tempMaterial.SetActive(true);
             tempConfetti.Play();
-
-            StateController.Instance.SetState(State.PrepararConjuntoIntrodutor);
         }
+    }
+
+    public void ProcessTrocarLuvas()
+    {
+        Transform leftHand = GameObject.FindWithTag("LeftHand").transform;
+        Transform rightHand = GameObject.FindWithTag("RightHand").transform;
+        if (leftHand != null && rightHand != null)
+        {
+            if (leftHand.name.Equals("LeftHand") && rightHand.name.Equals("RightHand"))
+            {
+                leftHand.GetComponent<SkinnedMeshRenderer>().material = luvaMaterial;
+                rightHand.GetComponent<SkinnedMeshRenderer>().material = luvaMaterial;
+            }
+            else
+            {
+                SkinnedMeshRenderer leftHandMesh = leftHand.Find("LeftHand").GetChild(1).GetComponent<SkinnedMeshRenderer>();
+                SkinnedMeshRenderer rightHandMesh = rightHand.Find("RightHand").GetChild(1).GetComponent<SkinnedMeshRenderer>();
+                if (leftHandMesh != null && rightHandMesh != null)
+                {
+                    leftHandMesh.material = luvaMaterial;
+                    rightHandMesh.material = luvaMaterial;
+                }
+            }
+        }
+        StateController.Instance.SetState(State.PrepararConjuntoIntrodutor);
     }
 
     public void ProcessPrepararConjuntoIntrodutor()

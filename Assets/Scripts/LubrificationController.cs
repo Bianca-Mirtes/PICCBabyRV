@@ -12,12 +12,6 @@ public class LubrificationController : MonoBehaviour
         transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnCollisionEnter(Collision other)
     {
         if(other.gameObject.layer == 8)
