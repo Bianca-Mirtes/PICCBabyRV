@@ -496,7 +496,7 @@ public class ControllerUTI : MonoBehaviour
 
     private void ProcessRealizarPuncture()
     {
-
+        
     }
 
     private void ProcessRealizarTesteDePermeabilidade()
