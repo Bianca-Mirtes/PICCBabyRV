@@ -12,6 +12,8 @@ TagManager:
   - BubbleSoap
   - LeftHand
   - RightHand
+  - Gaze
+  - Correct
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - UI
   - Hand
   - Interactable
-  - 
+  - Gaze
   - 
   - 
   - 
