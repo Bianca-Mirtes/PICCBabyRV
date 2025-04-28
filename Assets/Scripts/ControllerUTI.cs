@@ -373,7 +373,6 @@ public class ControllerUTI : MonoBehaviour
         table.GetChild(0).GetChild(1).gameObject.SetActive(false);
         table.GetChild(0).GetChild(2).gameObject.SetActive(true);
         currentSlider.SetActive(true);
-        StateController.Instance.SetState(State.PrepararCampo);
     }
 
     private void ProcessPrepararCampo()
@@ -435,12 +434,13 @@ public class ControllerUTI : MonoBehaviour
                         rightHandMesh.material = handMaterial;
                     }
                 }
-            }
 
+            }
             Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
             table.GetChild(0).GetChild(4).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Realize a troca de luvas:";
             table.GetChild(0).GetChild(3).gameObject.SetActive(false);
             table.GetChild(0).GetChild(4).gameObject.SetActive(true);
+            tempMaterial.SetActive(false);
             tempMaterial = luvas;
             tempMaterial.SetActive(true);
             tempConfetti.Play();
@@ -475,9 +475,11 @@ public class ControllerUTI : MonoBehaviour
     public void ProcessPrepararConjuntoIntrodutor()
     {
         Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
-        table.GetChild(0).GetChild(2).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Prepare o conjunto introdutor: Pegue a Seringa e preencha-a com soro fisiologico";
-        table.GetChild(0).GetChild(1).gameObject.SetActive(false);
-        table.GetChild(0).GetChild(2).gameObject.SetActive(true);
+        table.GetChild(0).GetChild(5).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Prepare o conjunto introdutor:";
+        table.GetChild(0).GetChild(5).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Pegue a Seringa e preencha-a com soro fisiologico";
+        table.GetChild(0).GetChild(5).GetChild(1).gameObject.SetActive(true);
+        table.GetChild(0).GetChild(4).gameObject.SetActive(false);
+        table.GetChild(0).GetChild(5).gameObject.SetActive(true);
         currentSlider.SetActive(true);
         tempMaterial.SetActive(true);
         tempConfetti.Play();
