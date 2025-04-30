@@ -97,12 +97,6 @@ public class ControllerUTI : MonoBehaviour
         if (StateController.Instance.CompareStates(State.RealizarAntissepsia))
             ProcessRealizarAntissepsia();
         else
-        if (StateController.Instance.CompareStates(State.PrepararConjuntoIntrodutor))
-            ProcessPrepararConjuntoIntrodutor();
-        else
-        if (StateController.Instance.CompareStates(State.RealizarPuncture))
-            ProcessRealizarPuncture();
-        else
         if (StateController.Instance.CompareStates(State.RealizarTesteDePermeabilidade))
             ProcessRealizarTesteDePermeabilidade();
         else
@@ -294,7 +288,7 @@ public class ControllerUTI : MonoBehaviour
     public void SetMinigameAntissepsia()
     {
         Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
-        table.GetChild(0).GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Se aproxime do paciente e aplique a clorexidina no local da inserção para realizar a antissepsia";
+        table.GetChild(0).GetChild(4).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Se aproxime do paciente e aplique a clorexidina no local da inserção para realizar a antissepsia";
         currentSlider.SetActive(true);
         currentPoints.SetActive(true);
         tempConfetti.Play();
@@ -355,8 +349,7 @@ public class ControllerUTI : MonoBehaviour
         if (slider.value == 1)
         {
             Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
-            table.GetChild(0).GetChild(3).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Prepare o Campo Cirúrgico:";
-            table.GetChild(0).GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Utilize os panos estereis para preparar o campo cirurgico!";
+            table.GetChild(0).GetChild(3).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Prepare o Campo Cirúrgico: Utilize os panos estereis";
             table.GetChild(0).GetChild(3).gameObject.SetActive(true);
             table.GetChild(0).GetChild(2).gameObject.SetActive(false);
             currentSlider.SetActive(false);
@@ -380,9 +373,11 @@ public class ControllerUTI : MonoBehaviour
        if(countSurgicalFields == 2)
         {
             Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
-            table.GetChild(0).GetChild(3).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Lubrificação do Cateter intravenoso:";
-            table.GetChild(0).GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Pegue a Seringa e encha-a com soro fisiologico";
-            table.GetChild(0).GetChild(3).GetChild(1).gameObject.SetActive(true);
+            table.GetChild(0).GetChild(4).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Lubrificação do Cateter intravenoso:";
+            table.GetChild(0).GetChild(4).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Pegue a Seringa e encha-a com soro fisiologico";
+            table.GetChild(0).GetChild(3).gameObject.SetActive(false);
+            table.GetChild(0).GetChild(4).GetChild(1).gameObject.SetActive(true);
+            table.GetChild(0).GetChild(4).gameObject.SetActive(true);
             tempMaterial.SetActive(true);
             tempConfetti.Play();
             StateController.Instance.SetState(State.LubrificarCateter);
@@ -392,8 +387,8 @@ public class ControllerUTI : MonoBehaviour
     public void ProcessLubrificarCateter()
     {
         Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
-        table.GetChild(0).GetChild(3).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Preparação do Cateter:";
-        table.GetChild(0).GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>().text = " Pegue a tesoura de Mayo reta e realize o corte do cateter no comprimento certo";
+        table.GetChild(0).GetChild(4).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Preparação do Cateter:";
+        table.GetChild(0).GetChild(4).GetChild(1).GetComponent<TextMeshProUGUI>().text = " Pegue a tesoura de Mayo reta e realize o corte do cateter no comprimento certo";
         tempMaterial.SetActive(true);
         tempConfetti.Play();
         currentSlider = currentIncubator.GetChild(0).GetChild(1).GetChild(0).gameObject;
@@ -403,8 +398,8 @@ public class ControllerUTI : MonoBehaviour
     public void ProcessPrepararCateter()
     {
         Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
-        table.GetChild(0).GetChild(3).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Antissepsia Local:";
-        table.GetChild(0).GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>().text = " Pegue a pinça e encaixe um pedaço de compressa esteril na ponta";
+        table.GetChild(0).GetChild(4).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Antissepsia Local:";
+        table.GetChild(0).GetChild(4).GetChild(1).GetComponent<TextMeshProUGUI>().text = " Pegue a pinça e encaixe um pedaço de compressa esteril na ponta";
         tempMaterial.SetActive(true);
         tempConfetti.Play();
         currentSlider = currentIncubator.GetChild(0).GetChild(1).GetChild(0).gameObject;
@@ -437,9 +432,9 @@ public class ControllerUTI : MonoBehaviour
 
             }
             Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
-            table.GetChild(0).GetChild(4).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Realize a troca de luvas:";
-            table.GetChild(0).GetChild(3).gameObject.SetActive(false);
-            table.GetChild(0).GetChild(4).gameObject.SetActive(true);
+            table.GetChild(0).GetChild(5).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Realize a troca de luvas:";
+            table.GetChild(0).GetChild(4).gameObject.SetActive(false);
+            table.GetChild(0).GetChild(5).gameObject.SetActive(true);
             tempMaterial.SetActive(false);
             tempMaterial = luvas;
             tempMaterial.SetActive(true);
@@ -469,20 +464,27 @@ public class ControllerUTI : MonoBehaviour
                 }
             }
         }
+        Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
+        table.GetChild(0).GetChild(6).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Prepare o conjunto introdutor:";
+        table.GetChild(0).GetChild(6).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Pegue a Seringa e preencha-a com soro fisiologico";
+        table.GetChild(0).GetChild(6).GetChild(1).gameObject.SetActive(true);
+        table.GetChild(0).GetChild(5).gameObject.SetActive(false);
+        table.GetChild(0).GetChild(6).gameObject.SetActive(true);
+        currentSlider.SetActive(true);
+        tempMaterial.SetActive(true);
+        tempConfetti.Play();
         StateController.Instance.SetState(State.PrepararConjuntoIntrodutor);
     }
 
     public void ProcessPrepararConjuntoIntrodutor()
     {
         Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
-        table.GetChild(0).GetChild(5).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Prepare o conjunto introdutor:";
-        table.GetChild(0).GetChild(5).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Pegue a Seringa e preencha-a com soro fisiologico";
-        table.GetChild(0).GetChild(5).GetChild(1).gameObject.SetActive(true);
-        table.GetChild(0).GetChild(4).gameObject.SetActive(false);
-        table.GetChild(0).GetChild(5).gameObject.SetActive(true);
-        currentSlider.SetActive(true);
+        table.GetChild(0).GetChild(7).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Aplique o Torniquete no paciente:";
+        table.GetChild(0).GetChild(6).gameObject.SetActive(false);
+        table.GetChild(0).GetChild(7).gameObject.SetActive(true);
         tempMaterial.SetActive(true);
         tempConfetti.Play();
+        StateController.Instance.SetState(State.PrepararTorniquete);
     }
 
     public void ProcessPrepararTorniquete(XRSocketInteractor socket)
@@ -495,10 +497,8 @@ public class ControllerUTI : MonoBehaviour
 
         StateController.Instance.SetState(State.RealizarPuncture);
     }
-
-    private void ProcessRealizarPuncture()
+    public void ProcessRealizarPuncture()
     {
-        
     }
 
     private void ProcessRealizarTesteDePermeabilidade()
