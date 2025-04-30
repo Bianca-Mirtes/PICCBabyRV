@@ -34,6 +34,11 @@ public class PunctureController : MonoBehaviour
                     boolean = true;
                 }
             }
+            else
+            {
+                transform.parent.parent.parent.gameObject.SetActive(false);
+
+            }
         }
     }
 }

@@ -439,6 +439,7 @@ public class ControllerUTI : MonoBehaviour
             tempMaterial = luvas;
             tempMaterial.SetActive(true);
             tempConfetti.Play();
+            StateController.Instance.SetState(State.TrocarLuvas);
         }
     }
 
@@ -465,11 +466,11 @@ public class ControllerUTI : MonoBehaviour
             }
         }
         Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
-        table.GetChild(0).GetChild(6).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Prepare o conjunto introdutor:";
-        table.GetChild(0).GetChild(6).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Pegue a Seringa e preencha-a com soro fisiologico";
-        table.GetChild(0).GetChild(6).GetChild(1).gameObject.SetActive(true);
+        table.GetChild(0).GetChild(4).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Prepare o conjunto introdutor:";
+        table.GetChild(0).GetChild(4).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Pegue a Seringa e preencha-a com soro fisiologico";
+        table.GetChild(0).GetChild(4).GetChild(1).gameObject.SetActive(true);
         table.GetChild(0).GetChild(5).gameObject.SetActive(false);
-        table.GetChild(0).GetChild(6).gameObject.SetActive(true);
+        table.GetChild(0).GetChild(4).gameObject.SetActive(true);
         currentSlider.SetActive(true);
         tempMaterial.SetActive(true);
         tempConfetti.Play();
@@ -479,9 +480,9 @@ public class ControllerUTI : MonoBehaviour
     public void ProcessPrepararConjuntoIntrodutor()
     {
         Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
-        table.GetChild(0).GetChild(7).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Aplique o Torniquete no paciente:";
-        table.GetChild(0).GetChild(6).gameObject.SetActive(false);
-        table.GetChild(0).GetChild(7).gameObject.SetActive(true);
+        table.GetChild(0).GetChild(6).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Aplique o Torniquete no paciente:";
+        table.GetChild(0).GetChild(4).gameObject.SetActive(false);
+        table.GetChild(0).GetChild(6).gameObject.SetActive(true);
         tempMaterial.SetActive(true);
         tempConfetti.Play();
         StateController.Instance.SetState(State.PrepararTorniquete);
@@ -495,10 +496,17 @@ public class ControllerUTI : MonoBehaviour
         if (currentMaterial != null)
             Destroy(currentMaterial);
 
+        Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
+        table.GetChild(0).GetChild(7).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Venopunção: Utilize o GATILHO do controle ESQUERDO para inserir na "+ "<color=green>área correta";
+        table.GetChild(0).GetChild(6).gameObject.SetActive(false);
+        table.GetChild(0).GetChild(7).gameObject.SetActive(true);
+        tempMaterial.SetActive(true);
+        tempConfetti.Play();
         StateController.Instance.SetState(State.RealizarPuncture);
     }
     public void ProcessRealizarPuncture()
     {
+
     }
 
     private void ProcessRealizarTesteDePermeabilidade()

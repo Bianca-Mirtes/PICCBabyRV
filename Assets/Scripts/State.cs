@@ -11,6 +11,7 @@ public enum State
     LubrificarCateter,
     PrepararCateter,
     RealizarAntissepsia,
+    TrocarLuvas,
     PrepararConjuntoIntrodutor,
     PrepararTorniquete,
     RealizarPuncture,
