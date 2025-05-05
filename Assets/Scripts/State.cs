@@ -18,5 +18,5 @@ public enum State
     RealizarIntroductionCompleta,
     RealizarTesteDePermeabilidade,
     FecharSistema,
-    DescartarMateriais
+    CobrirCateter
 }
