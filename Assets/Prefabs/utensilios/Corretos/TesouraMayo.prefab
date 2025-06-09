@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 103250856903191437}
   - component: {fileID: 8878820456398723975}
   - component: {fileID: 5348114586372061442}
+  - component: {fileID: 4203391252617446906}
   m_Layer: 0
   m_Name: TesouraMayo
   m_TagString: CasoPicc
@@ -523,6 +524,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6995b5849997947438ac08fabb19e01b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4203391252617446906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5539073110005398095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62c193669c40b049879a0c609d294f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8280222581106949419

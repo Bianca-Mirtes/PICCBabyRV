@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4541457245113602703}
   - component: {fileID: 8587079310979370421}
   - component: {fileID: 4826574365200721823}
+  - component: {fileID: 7089187342726566578}
   m_Layer: 0
   m_Name: Seringa
   m_TagString: CasoPicc
@@ -314,6 +315,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6995b5849997947438ac08fabb19e01b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7089187342726566578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838074242150422625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62c193669c40b049879a0c609d294f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5318588142523296438

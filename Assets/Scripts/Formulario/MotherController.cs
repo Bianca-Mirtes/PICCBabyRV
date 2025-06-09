@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class MotherController : MonoBehaviour
 {
-    private bool signatureMom = false;
+    public bool signatureMom = false;
+    private bool stepStarted = false;
 
     private void Update()
     {
@@ -18,6 +19,32 @@ public class MotherController : MonoBehaviour
             }
             signatureMom = false;
         }
+    }
+
+    public void Options()
+    {
+        if (!stepStarted)
+        {
+            transform.GetChild(1).GetComponent<DialogueTrigger>().Trigger();
+            Invoke("Enable", 10f);
+            stepStarted = true;
+        }
+    }
+
+    private void Enable()
+    {
+        transform.GetChild(2).GetChild(0).gameObject.SetActive(true);
+    }
+
+    public void ResetStep()
+    {
+        transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
+        Invoke("ResetDialogue", 10f);
+    }
+    private void ResetDialogue()
+    {
+        Transform player = GameObject.FindWithTag("Player").transform;
+        player.position = new Vector3(-1.5f, player.position.y, -6.7f);
     }
 
     public void SignForm()

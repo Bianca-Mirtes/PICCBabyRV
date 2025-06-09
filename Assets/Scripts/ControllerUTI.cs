@@ -59,7 +59,6 @@ public class ControllerUTI : MonoBehaviour
 
     private void Start()
     {
-        form.transform.Find("seta").gameObject.SetActive(true);
         AudioManager.instance.Play("background");
         Uniforme.SetActive(false);
         foreach(GameObject obj in mayosTablePICC)
@@ -70,8 +69,13 @@ public class ControllerUTI : MonoBehaviour
     void Update()
     {
         if (buttonSelect != null)
-            foreach (var button in buttons)
-                button.enabled = false;
+        { 
+            for (var ii = 0; ii < buttons.Count; ii++)
+            {
+                buttons[ii].enabled = false;
+                setasBaby[ii].SetActive(false);
+            }
+        }
         VerifyProcessStateNow();
     }
 
@@ -79,9 +83,6 @@ public class ControllerUTI : MonoBehaviour
     {
         if (StateController.Instance.CompareStates(State.VerificarCasoPicc))
             ProcessCasePicc();
-        else
-        if (StateController.Instance.CompareStates(State.EntregarFormulario))
-            ProcessEntregarFormulario();
         else
         if (StateController.Instance.CompareStates(State.RecolherMateriais))
             ProcessRecolherMateriais();
@@ -184,23 +185,6 @@ public class ControllerUTI : MonoBehaviour
         }
     }
 
-    public void ToStateDevolverFormulario()
-    {
-        StateController.Instance.SetState(State.DevolverFormulario);
-    }
-
-    public void ToStateRecolherMateriais(ParticleSystem sucess)
-    {
-        if (StateController.Instance.CompareStates(State.DevolverFormulario))
-        {
-            sucess.Play();
-            StateController.Instance.SetState(State.RecolherMateriais);
-            finishProcessCanvas.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Parabéns! Você concluiu a etapa de assinatura,\r\nagora prepare-se para a etapa de Coleta dos Materiais!";
-            finishProcessCanvas.GetComponent<FadeController>().FadeInForFadeOut(5f);
-            StateController.Instance.SetState(State.RecolherMateriais);
-        }
-    }
-
     public void ProcessCasePicc()
     {
         form.SetActive(false);
@@ -216,32 +200,23 @@ public class ControllerUTI : MonoBehaviour
             teleportationMae[i].SetActive(false);
     }
 
-    public void ProcessEntregarFormulario()
+    public void ProcessColetarAutorização(ParticleSystem sucess)
     {
-        if (teleportationBabys.Count == setasBaby.Count && setasBaby.Count == interactablesBabys.Count)
-        {
-            for (int i = 0; i < teleportationBabys.Count; i++)
-            {
-                setasBaby[i].SetActive(false);
-                teleportationBabys[i].SetActive(false);
-                interactablesBabys[i].enabled = false;
-            }
-        }
-        else
-            Debug.LogError("É preciso que a quantidade de incubadoras seja válido com outras variáveis");
+        FindFirstObjectByType<MotherController>().gameObject.SetActive(false);
+        form.SetActive(false);
+        sucess.Play();
+        finishProcessCanvas.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Parabéns! Você concluiu a etapa de assinatura,\r\nagora prepare-se para a etapa de Coleta dos Materiais!";
+        finishProcessCanvas.GetComponent<FadeController>().FadeInForFadeOut(6f);
+        StateController.Instance.SetState(State.RecolherMateriais);
+    }
 
-        form.SetActive(true);
- 
-        for (int i = 0; i < teleportationToForm.Count; i++)
-            teleportationToForm[i].SetActive(true);
-
-        for (int i = 0; i < teleportationMae.Count; i++)
-            teleportationMae[i].SetActive(true);
+    public void HideObject(GameObject obj)
+    {
+        obj.SetActive(false);
     }
 
     public void ProcessRecolherMateriais()
     {
-        form.SetActive(false);
         tabletCountMaterial.SetActive(true);
         mayosTable.SetActive(true);
         for (int i = 0; i < teleportationToForm.Count; i++)
@@ -353,16 +328,19 @@ public class ControllerUTI : MonoBehaviour
     public void VerifUpdateSlider(UnityEngine.UI.Slider slider)
     {
         if (slider.value == 1)
-        {
-            Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
-            table.GetChild(0).GetChild(3).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Prepare o Campo Cirúrgico: Utilize os panos estereis";
-            table.GetChild(0).GetChild(3).gameObject.SetActive(true);
-            table.GetChild(0).GetChild(2).gameObject.SetActive(false);
-            currentSlider.SetActive(false);
-            tempMaterial.SetActive(true);
-            tempConfetti.Play();
-            StateController.Instance.SetState(State.PrepararCampo);
-        }
+            Invoke("NextStep", 3f);
+    }
+
+    private void NextStep()
+    {
+        Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
+        table.GetChild(0).GetChild(3).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Prepare o Campo Cirúrgico: Utilize os panos estereis";
+        table.GetChild(0).GetChild(3).gameObject.SetActive(true);
+        table.GetChild(0).GetChild(2).gameObject.SetActive(false);
+        currentSlider.SetActive(false);
+        tempMaterial.SetActive(true);
+        tempConfetti.Play();
+        StateController.Instance.SetState(State.PrepararCampo);
     }
 
     public void ProcessMensurarCateter()
@@ -541,12 +519,15 @@ public class ControllerUTI : MonoBehaviour
         table.GetChild(0).GetChild(3).gameObject.SetActive(true);
 
         GameObject.Find("MinigameIntroduction").SetActive(false);
+        GameObject.FindWithTag("Player").transform.position = new Vector3(-12.89f, 0.2f, -3.9f);
+        GameObject.FindWithTag("Player").transform.eulerAngles = new Vector3(32.2f, -33.9f, -2.1f);
+        GameObject.Find("Locomotion System").SetActive(false);
 
         tempConfetti.Play();
         StateController.Instance.SetState(State.RealizarTesteDePermeabilidade);
     }
 
-    private void ProcessRealizarTesteDePermeabilidade()
+    public void ProcessRealizarTesteDePermeabilidade()
     {
         Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
         table.GetChild(0).GetChild(7).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Fechar Sistema: ";

@@ -18,6 +18,8 @@ public class ClickEventSymptoms : MonoBehaviour
 
     private Baby BabySelect = null;
 
+    public Transform objectsForm;
+
     private readonly string correct_sound_name = "correct_sound";
 
     private readonly string incorrect_sound_name = "incorrect_sound";
@@ -52,9 +54,9 @@ public class ClickEventSymptoms : MonoBehaviour
                         RenderForm();
                         BlockOthersCanvasBaby();
                         FindObjectOfType<ControllerSymptoms>().FindIncubator(BabySelect);
-                        StateController.Instance.SetState(State.PrepararCampo);
+                        StateController.Instance.SetState(State.MensurarCateter);
                         AudioManager.instance.Play(correct_sound_name);
-                        TextResult.text = "Isso mesmo! Agora pegue o formulário que estará na mesa e leve para fora, para que a mãe assine!";
+                        TextResult.text = "Isso mesmo! Agora pegue o formulário que está na bancada e leve para fora, para que a mãe assine!";
                     }
                     else
                     {
@@ -126,6 +128,11 @@ public class ClickEventSymptoms : MonoBehaviour
 
         TextMeshProUGUI responsavel = childCanvaTransform.Find("Responsavel").GetComponent<TextMeshProUGUI>();
         responsavel.text = baby.MotherName;
+
+        formulario.gameObject.SetActive(true);
+        objectsForm.GetChild(1).gameObject.SetActive(true); // Ativa a seta sinalizadora do formulário
+        objectsForm.GetChild(0).gameObject.SetActive(true);
+        FindFirstObjectByType<MotherController>().gameObject.transform.GetChild(4).gameObject.SetActive(true);
     }
 
     void BlockOthersCanvasBaby() {

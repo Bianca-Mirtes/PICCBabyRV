@@ -5,6 +5,7 @@ using UnityEngine;
 public class HeightController : MonoBehaviour
 {
     private float height = 0f;
+    public bool isWithForm = false;
     // Start is called before the first frame update
     void Start()
     {

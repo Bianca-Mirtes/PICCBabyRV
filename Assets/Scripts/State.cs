@@ -1,8 +1,7 @@
 public enum State
 {
     VerificarCasoPicc,
-    EntregarFormulario,
-    DevolverFormulario,
+    ColetarAutorização,
     RecolherMateriais,
     LavarMaos,
     PrepararUniforme,

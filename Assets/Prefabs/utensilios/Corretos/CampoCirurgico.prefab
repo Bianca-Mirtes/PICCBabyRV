@@ -150,6 +150,7 @@ GameObject:
   - component: {fileID: 3906685727426548611}
   - component: {fileID: 9105584814931073126}
   - component: {fileID: 7050665863160285349}
+  - component: {fileID: 4682313981036864382}
   m_Layer: 0
   m_Name: CampoCirurgico
   m_TagString: CasoPicc
@@ -462,8 +463,20 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.6903675, y: 0.5885994, z: 2.504978}
-  m_Center: {x: -0.15777737, y: -0.0039494033, z: -0.33472058}
+  m_Size: {x: 2.6903675, y: 0.5885994, z: 2.744089}
+  m_Center: {x: -0.15777738, y: -0.0039493917, z: -0.2151658}
+--- !u!114 &4682313981036864382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2983941797369510395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62c193669c40b049879a0c609d294f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5780327435780261439
 GameObject:
   m_ObjectHideFlags: 0

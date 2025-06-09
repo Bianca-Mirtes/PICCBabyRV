@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: 3217160371611953131}
   - component: {fileID: 8660828866242688081}
   - component: {fileID: 6552741136929906411}
+  - component: {fileID: 5964011256890909179}
   m_Layer: 0
   m_Name: "Clorexidina alco\xF3lica 0,5%; (9)"
   m_TagString: CasoPicc
@@ -480,6 +481,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6995b5849997947438ac08fabb19e01b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5964011256890909179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5378970334097565684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62c193669c40b049879a0c609d294f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7987520809070234664

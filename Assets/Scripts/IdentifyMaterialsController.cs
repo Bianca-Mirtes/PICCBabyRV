@@ -11,7 +11,7 @@ using System.Net.Sockets;
 public class IdentifyMaterialsController : MonoBehaviour
 {
     [Header("Attributes")]
-    [SerializeField] private int QuantidadeNecessaria = 14;
+    [SerializeField] private int QuantidadeNecessaria = 1;
     [SerializeField] private int QuantidadeIncorretos = 0;
     [SerializeField] private int QuantidadeCorretos = 0;
     [SerializeField] private int QuantidadePreenchida = 0;
