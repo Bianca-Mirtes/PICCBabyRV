@@ -9,9 +9,11 @@ public class FaucetController : MonoBehaviour
     private bool isOpen = true;
 
     public TextMeshProUGUI percent;
+    public GameObject support;
     public GameObject bubble;
     public ParticleSystem confetti;
     public GameObject congratulations;
+    public GameObject seta;
 
     // Start is called before the first frame update
     void Start()
@@ -51,14 +53,18 @@ public class FaucetController : MonoBehaviour
                 if (!confetti.isPlaying)
                 {
                     congratulations.SetActive(true);
+                    Control();
+                    support.GetComponent<AnimationsController>().Control();
+                    support.GetComponent<SoundEventController>().Control();
                     confetti.Play();
+                    seta.SetActive(false);
                     AudioManager.instance.Play("correct_sound");
-                    Invoke("ChangeState", 6f);
                     GameObject[] systemsBubble = GameObject.FindGameObjectsWithTag("BubbleSoap");
                     foreach (var system in systemsBubble)
                     {
                         FindObjectOfType<HandController>().BubbleSoapStop(system.GetComponent<ParticleSystem>());
                     }
+                    Invoke("ChangeState", 6f);
                 }
             }
             else
@@ -66,7 +72,6 @@ public class FaucetController : MonoBehaviour
                 bubble.GetComponent<CanvasGroup>().alpha += Time.deltaTime / 12;
                 percent.text = System.Math.Round(bubble.GetComponent<CanvasGroup>().alpha * 100, 1) + "%";
             }
-            Debug.Log("lavandoo");
         }
     }
 }

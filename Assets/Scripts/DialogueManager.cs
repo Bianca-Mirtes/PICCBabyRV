@@ -94,6 +94,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Hide()
     {
+        dialogueLine.text = "";
         ani.Play("MomDialogueHide");
     }
 }

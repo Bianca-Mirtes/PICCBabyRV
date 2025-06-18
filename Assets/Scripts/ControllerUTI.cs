@@ -31,6 +31,7 @@ public class ControllerUTI : MonoBehaviour
     [Header("Objetos Temporarios")]
     private ParticleSystem tempConfetti;
     private GameObject tempMaterial;
+    private GameObject hideObject;
     private int countSurgicalFields = 0;
     private GameObject currentSlider;
     private GameObject currentPoints;
@@ -119,7 +120,6 @@ public class ControllerUTI : MonoBehaviour
     public void GetCurrentMayosTablePICC(GameObject mayosTablePICC)
     {
         currentMayosTablePICC = mayosTablePICC;
-        currentMayosTablePICC.SetActive(true);
     }
 
     public Transform GetCurrentIncubator()
@@ -203,16 +203,29 @@ public class ControllerUTI : MonoBehaviour
     public void ProcessColetarAutorização(ParticleSystem sucess)
     {
         FindFirstObjectByType<MotherController>().gameObject.SetActive(false);
-        form.SetActive(false);
+        HideObject(form, 5f);
         sucess.Play();
         finishProcessCanvas.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Parabéns! Você concluiu a etapa de assinatura,\r\nagora prepare-se para a etapa de Coleta dos Materiais!";
-        finishProcessCanvas.GetComponent<FadeController>().FadeInForFadeOut(6f);
+        finishProcessCanvas.GetComponent<FadeController>().FadeInForFadeOut(8f);
+        finishProcessCanvas.GetChild(2).GetComponent<ParticleSystem>().Play();
+
         StateController.Instance.SetState(State.RecolherMateriais);
     }
 
     public void HideObject(GameObject obj)
     {
         obj.SetActive(false);
+    }
+
+    public void HideObject(GameObject obj, float time)
+    {
+        hideObject = obj;
+        Invoke("Hide", time);
+    }
+
+    public void Hide()
+    {
+        hideObject.SetActive(false);
     }
 
     public void ProcessRecolherMateriais()
@@ -280,9 +293,10 @@ public class ControllerUTI : MonoBehaviour
         Canvas canvasUniform =  Uniforme.transform.Find("Canvas").GetComponent<Canvas>();
         Uniforme.transform.Find("seta").gameObject.SetActive(false);
         Uniforme.transform.Find("uniforme").gameObject.SetActive(false);
-        canvasUniform.transform.Find("Button").gameObject.SetActive(false);
+        canvasUniform.transform.Find("Canvas").gameObject.SetActive(false);
 
-        finishProcessCanvas.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Parabéns! Agora você está pronto para realizar o procedimento cirúrgico...";
+        finishProcessCanvas.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Parabéns! Agora você está pronto para realizar o procedimento!";
+        finishProcessCanvas.GetChild(2).GetComponent<ParticleSystem>().Play();
 
         Transform leftHand = GameObject.FindWithTag("LeftHand").transform;
         Transform rightHand = GameObject.FindWithTag("RightHand").transform;
@@ -311,6 +325,7 @@ public class ControllerUTI : MonoBehaviour
         }
         GameObject.FindWithTag("MainCamera").transform.GetChild(2).gameObject.SetActive(true); // gorro
         GameObject.FindWithTag("MainCamera").transform.GetChild(3).gameObject.SetActive(true); // mascara
+        currentMayosTablePICC.SetActive(true);
         StateController.Instance.SetState(State.MensurarCateter);
     }
 
