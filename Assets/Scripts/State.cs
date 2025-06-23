@@ -12,10 +12,12 @@ public enum State
     RealizarAntissepsia,
     TrocarLuvas,
     PrepararConjuntoIntrodutor,
-    PrepararTorniquete,
-    RealizarPuncture,
-    RealizarIntroductionCompleta,
+    AplicarTorniquete,
+    RealizarPunção,
+    RealizarIntroduçãoCompleta,
     RealizarTesteDePermeabilidade,
+    RealizarRemoçãoIntrodutor,
     FecharSistema,
-    CobrirCateter
+    FazerCoberturaDoCateter
 }
+

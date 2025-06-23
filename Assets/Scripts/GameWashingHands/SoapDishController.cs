@@ -13,10 +13,6 @@ public class SoapDishController : MonoBehaviour
             Debug.Log("Mao embaixo da saboneteira");
             handInsideCollisionRay = true;
         }
-        else
-        {
-            handInsideCollisionRay = false;
-        }
     }
 
     public void SetTriggerSoapDish(bool value)
@@ -25,6 +21,15 @@ public class SoapDishController : MonoBehaviour
         {
            Debug.Log("Trigger da saboneteira pressionado");
            triggerSoapDish = value;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag.Equals("LeftHand") || other.gameObject.tag.Equals("RightHand"))
+        {
+            Debug.Log("Mão saiu da saboneteira");
+            handInsideCollisionRay = false;
         }
     }
 

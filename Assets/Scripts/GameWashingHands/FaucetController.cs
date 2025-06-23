@@ -15,6 +15,8 @@ public class FaucetController : MonoBehaviour
     public GameObject congratulations;
     public GameObject seta;
 
+    private bool isFinished = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +41,7 @@ public class FaucetController : MonoBehaviour
         Faucet();
     }
 
-    public void ChangeState()
+    private void ChangeState()
     {
         StateController.Instance.SetState(State.PrepararUniforme);
     }
@@ -50,21 +52,22 @@ public class FaucetController : MonoBehaviour
         {
             if(bubble.GetComponent<CanvasGroup>().alpha == 1)
             {
-                if (!confetti.isPlaying)
+                if (!isFinished)
                 {
+                    isFinished = true;
                     congratulations.SetActive(true);
+                    seta.SetActive(false);
+                    GameObject[] systemsBubble = GameObject.FindGameObjectsWithTag("BubbleSoap");
                     Control();
                     support.GetComponent<AnimationsController>().Control();
-                    support.GetComponent<SoundEventController>().Control();
-                    confetti.Play();
-                    seta.SetActive(false);
                     AudioManager.instance.Play("correct_sound");
-                    GameObject[] systemsBubble = GameObject.FindGameObjectsWithTag("BubbleSoap");
+                    GetComponent<AudioSource>().Stop();
+                    confetti.Play();
                     foreach (var system in systemsBubble)
                     {
                         FindObjectOfType<HandController>().BubbleSoapStop(system.GetComponent<ParticleSystem>());
                     }
-                    Invoke("ChangeState", 6f);
+                    Invoke("ChangeState", 5f);
                 }
             }
             else

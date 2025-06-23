@@ -23,6 +23,7 @@ public class HandController : MonoBehaviour
     public void BubbleSoapStop(ParticleSystem bubbleSoap)
     {
         bubbleSoap.Stop();
+        handsWithSoap = false;
     }
 
     private void OnTriggerStay(Collider other)

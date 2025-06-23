@@ -66,7 +66,6 @@ public class ControllerUTI : MonoBehaviour
             obj.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (buttonSelect != null)
@@ -88,9 +87,6 @@ public class ControllerUTI : MonoBehaviour
         if (StateController.Instance.CompareStates(State.RecolherMateriais))
             ProcessRecolherMateriais();
         else
-        if (StateController.Instance.CompareStates(State.LavarMaos))
-            ProcessLavarAsMaos();
-        else
         if (StateController.Instance.CompareStates(State.PrepararUniforme))
             ProcessOrganizarUniforme();
         else
@@ -99,12 +95,6 @@ public class ControllerUTI : MonoBehaviour
         else
         if (StateController.Instance.CompareStates(State.RealizarAntissepsia))
             ProcessRealizarAntissepsia();
-        else
-        if (StateController.Instance.CompareStates(State.RealizarTesteDePermeabilidade))
-            ProcessRealizarTesteDePermeabilidade();
-        else
-        if (StateController.Instance.CompareStates(State.FecharSistema))
-            ProcessFecharSistema();
     }
 
     public void GetCurrentMaterial(GameObject material)
@@ -205,9 +195,9 @@ public class ControllerUTI : MonoBehaviour
         FindFirstObjectByType<MotherController>().gameObject.SetActive(false);
         HideObject(form, 5f);
         sucess.Play();
-        finishProcessCanvas.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Parabéns! Você concluiu a etapa de assinatura,\r\nagora prepare-se para a etapa de Coleta dos Materiais!";
+        finishProcessCanvas.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Parabéns! Você concluiu a etapa de assinatura,\r\nagora prepare-se para a etapa de Coleta dos Materiais!";
         finishProcessCanvas.GetComponent<FadeController>().FadeInForFadeOut(8f);
-        finishProcessCanvas.GetChild(2).GetComponent<ParticleSystem>().Play();
+        finishProcessCanvas.GetChild(0).GetChild(1).GetComponent<ParticleSystem>().Play();
 
         StateController.Instance.SetState(State.RecolherMateriais);
     }
@@ -273,7 +263,7 @@ public class ControllerUTI : MonoBehaviour
         Uniforme.SetActive(true);
     }
 
-    private void HideMayoTable()
+    public void HideMayoTable()
     {
        mayosTable.SetActive(false);
        tabletCountMaterial.SetActive(false);
@@ -290,13 +280,12 @@ public class ControllerUTI : MonoBehaviour
 
     public void ClickUniforme()
     {
-        Canvas canvasUniform =  Uniforme.transform.Find("Canvas").GetComponent<Canvas>();
+        Uniforme.transform.Find("Canvas").gameObject.SetActive(false);
         Uniforme.transform.Find("seta").gameObject.SetActive(false);
         Uniforme.transform.Find("uniforme").gameObject.SetActive(false);
-        canvasUniform.transform.Find("Canvas").gameObject.SetActive(false);
 
-        finishProcessCanvas.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Parabéns! Agora você está pronto para realizar o procedimento!";
-        finishProcessCanvas.GetChild(2).GetComponent<ParticleSystem>().Play();
+        finishProcessCanvas.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Parabéns! Agora você está pronto para realizar o procedimento!";
+        finishProcessCanvas.GetChild(0).GetChild(1).GetComponent<ParticleSystem>().Play();
 
         Transform leftHand = GameObject.FindWithTag("LeftHand").transform;
         Transform rightHand = GameObject.FindWithTag("RightHand").transform;
@@ -517,28 +506,29 @@ public class ControllerUTI : MonoBehaviour
     {
         Transform tabletInfo = currentMayosTablePICC.transform.Find("TabletInfos");
 
-        tabletInfo.GetChild(8).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Realize a Introdução Completa do Cateter: ";
-        tabletInfo.GetChild(8).gameObject.SetActive(true);
-        tabletInfo.GetChild(7).gameObject.SetActive(false);
+        tabletInfo.GetChild(0).GetChild(8).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Realize a Introdução Completa do Cateter: ";
+        tabletInfo.GetChild(0).GetChild(8).gameObject.SetActive(true);
+        tabletInfo.GetChild(0).GetChild(7).gameObject.SetActive(false);
 
-        tempConfetti.Play();
+        tempMaterial.transform.GetChild(0).gameObject.SetActive(true);
+        tempMaterial.SetActive(true);
+        //tempConfetti.Play();
+
         StateController.Instance.SetState(State.RealizarIntroductionCompleta);
     }
 
     public void ProcessRealizarCompleteIntroduction()
     {
         Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
-        table.GetChild(0).GetChild(3).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Teste de Permeabilidade: ";
-        table.GetChild(0).GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Encha a seringa com soro fisiológico";
-        table.GetChild(0).GetChild(6).gameObject.SetActive(false);
-        table.GetChild(0).GetChild(3).gameObject.SetActive(true);
+        table.GetChild(0).GetChild(4).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Teste de Permeabilidade: ";
+        table.GetChild(0).GetChild(4).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Encha a seringa com soro fisiológico";
+        table.GetChild(0).GetChild(8).gameObject.SetActive(false);
+        table.GetChild(0).GetChild(4).GetChild(1).gameObject.SetActive(true);
+        table.GetChild(0).GetChild(4).gameObject.SetActive(true);
 
         GameObject.Find("MinigameIntroduction").SetActive(false);
-        GameObject.FindWithTag("Player").transform.position = new Vector3(-12.89f, 0.2f, -3.9f);
-        GameObject.FindWithTag("Player").transform.eulerAngles = new Vector3(32.2f, -33.9f, -2.1f);
-        GameObject.Find("Locomotion System").SetActive(false);
 
-        tempConfetti.Play();
+        //tempConfetti.Play();
         StateController.Instance.SetState(State.RealizarTesteDePermeabilidade);
     }
 
@@ -550,7 +540,7 @@ public class ControllerUTI : MonoBehaviour
         table.GetChild(0).GetChild(7).gameObject.SetActive(true);
       
         tempMaterial.SetActive(true);
-        tempConfetti.Play();
+        //tempConfetti.Play();
         StateController.Instance.SetState(State.FecharSistema);
     }
 
@@ -562,7 +552,7 @@ public class ControllerUTI : MonoBehaviour
         table.GetChild(0).GetChild(7).gameObject.SetActive(true);
       
         tempMaterial.SetActive(true);
-        tempConfetti.Play();
+        //tempConfetti.Play();
         StateController.Instance.SetState(State.CobrirCateter);
     }
 }

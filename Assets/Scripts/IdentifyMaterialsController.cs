@@ -62,6 +62,7 @@ public class IdentifyMaterialsController : MonoBehaviour
                 result.color = Color.white;
                 result.text = "Parabéns, siga para a proxima etapa!";
                 StateController.Instance.SetState(State.LavarMaos);
+                FindFirstObjectByType<ControllerUTI>().ProcessLavarAsMaos();
                 AudioManager.instance.Play("correct_sound");
             }
             else
