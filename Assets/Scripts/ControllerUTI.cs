@@ -58,18 +58,39 @@ public class ControllerUTI : MonoBehaviour
     [SerializeField] private List<GameObject> setasBaby;
     [SerializeField] private List<GameObject> setasLavarMaos;
 
+    // Singleton 
+    private static ControllerUTI _instance;
+    public static ControllerUTI Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<ControllerUTI>();
+                if (Instance == null)
+                {
+                    GameObject obj = new GameObject("ControllerUTI");
+                    _instance = obj.AddComponent<ControllerUTI>();
+                }
+            }
+            return _instance;
+        }
+    }
+
     private void Start()
     {
         AudioManager.instance.Play("background");
         Uniforme.SetActive(false);
-        foreach(GameObject obj in mayosTablePICC)
+        foreach (GameObject obj in mayosTablePICC)
             obj.SetActive(false);
     }
+
+   
 
     void Update()
     {
         if (buttonSelect != null)
-        { 
+        {
             for (var ii = 0; ii < buttons.Count; ii++)
             {
                 buttons[ii].enabled = false;
@@ -224,10 +245,10 @@ public class ControllerUTI : MonoBehaviour
         mayosTable.SetActive(true);
         for (int i = 0; i < teleportationToForm.Count; i++)
             teleportationToForm[i].SetActive(false);
-        
+
         for (int i = 0; i < teleportationMae.Count; i++)
             teleportationMae[i].SetActive(false);
-        
+
         for (int i = 0; i < teleportationRecolherMateriais.Count; i++)
             teleportationRecolherMateriais[i].SetActive(true);
     }
@@ -265,8 +286,8 @@ public class ControllerUTI : MonoBehaviour
 
     public void HideMayoTable()
     {
-       mayosTable.SetActive(false);
-       tabletCountMaterial.SetActive(false);
+        mayosTable.SetActive(false);
+        tabletCountMaterial.SetActive(false);
     }
 
     public void SetMinigameAntissepsia()
@@ -290,9 +311,9 @@ public class ControllerUTI : MonoBehaviour
         Transform leftHand = GameObject.FindWithTag("LeftHand").transform;
         Transform rightHand = GameObject.FindWithTag("RightHand").transform;
 
-        if(leftHand != null && rightHand != null)
+        if (leftHand != null && rightHand != null)
         {
-            if(leftHand.name.Equals("LeftHand") && rightHand.name.Equals("RightHand"))
+            if (leftHand.name.Equals("LeftHand") && rightHand.name.Equals("RightHand"))
             {
                 leftHand.GetComponent<SkinnedMeshRenderer>().material = luvaMaterial;
                 rightHand.GetComponent<SkinnedMeshRenderer>().material = luvaMaterial;
@@ -323,10 +344,19 @@ public class ControllerUTI : MonoBehaviour
         IXRSelectInteractable selectInteractable = socket.GetOldestInteractableSelected();
         GameObject currentMaterial = selectInteractable.transform.gameObject;
 
-        if(currentMaterial != null)
+        if (currentMaterial != null)
             Destroy(currentMaterial);
 
         countSurgicalFields++;
+    }
+
+    public void verifSocketCateter(XRSocketInteractor socket)
+    {
+        IXRSelectInteractable selectInteractable = socket.GetOldestInteractableSelected();
+        GameObject currentMaterial = selectInteractable.transform.gameObject;
+
+        if (currentMaterial != null)
+            Destroy(currentMaterial);
     }
 
     public void VerifUpdateSlider(UnityEngine.UI.Slider slider)
@@ -351,7 +381,7 @@ public class ControllerUTI : MonoBehaviour
     {
         Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
         table.GetChild(0).GetChild(2).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Faça a mensuração do tamanho do Cateter:";
-        if(isSuperiorMembers)
+        if (isSuperiorMembers)
             table.GetChild(0).GetChild(2).GetChild(2).gameObject.SetActive(true);
         else
             table.GetChild(0).GetChild(2).GetChild(3).gameObject.SetActive(true);
@@ -362,7 +392,7 @@ public class ControllerUTI : MonoBehaviour
 
     private void ProcessPrepararCampo()
     {
-       if(countSurgicalFields == 2)
+        if (countSurgicalFields == 2)
         {
             Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
             table.GetChild(0).GetChild(4).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Lubrificação do Cateter intravenoso:";
@@ -400,7 +430,7 @@ public class ControllerUTI : MonoBehaviour
 
     private void ProcessRealizarAntissepsia()
     {
-        if(currentSlider.GetComponent<UnityEngine.UI.Slider>().value == 1)
+        if (currentSlider.GetComponent<UnityEngine.UI.Slider>().value == 1)
         {
             Transform leftHand = GameObject.FindWithTag("LeftHand").transform;
             Transform rightHand = GameObject.FindWithTag("RightHand").transform;
@@ -481,7 +511,7 @@ public class ControllerUTI : MonoBehaviour
         table.GetChild(0).GetChild(6).gameObject.SetActive(true);
         tempMaterial.SetActive(true);
         tempConfetti.Play();
-        StateController.Instance.SetState(State.PrepararTorniquete);
+        StateController.Instance.SetState(State.AplicarTorniquete);
     }
 
     public void ProcessPrepararTorniquete(XRSocketInteractor socket)
@@ -493,13 +523,13 @@ public class ControllerUTI : MonoBehaviour
             Destroy(currentMaterial);
 
         Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
-        table.GetChild(0).GetChild(7).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Venopunção: Utilize o GATILHO do controle ESQUERDO para inserir na "+ "<color=green>área correta";
+        table.GetChild(0).GetChild(7).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Venopunção: Utilize o GATILHO do controle ESQUERDO para inserir na " + "<color=green>área correta";
         table.GetChild(0).GetChild(7).GetChild(1).gameObject.SetActive(false);
         table.GetChild(0).GetChild(6).gameObject.SetActive(false);
         table.GetChild(0).GetChild(7).gameObject.SetActive(true);
         tempMaterial.SetActive(true);
         tempConfetti.Play();
-        StateController.Instance.SetState(State.RealizarPuncture);
+        StateController.Instance.SetState(State.RealizarPunção);
     }
 
     public void ProcessRealizarPuncture()
@@ -514,7 +544,7 @@ public class ControllerUTI : MonoBehaviour
         tempMaterial.SetActive(true);
         //tempConfetti.Play();
 
-        StateController.Instance.SetState(State.RealizarIntroductionCompleta);
+        StateController.Instance.SetState(State.RealizarIntroduçãoCompleta);
     }
 
     public void ProcessRealizarCompleteIntroduction()
@@ -535,10 +565,17 @@ public class ControllerUTI : MonoBehaviour
     public void ProcessRealizarTesteDePermeabilidade()
     {
         Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
-        table.GetChild(0).GetChild(7).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Fechar Sistema: ";
+        table.GetChild(0).GetChild(7).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Remoção do Introdutor: ";
         table.GetChild(0).GetChild(6).gameObject.SetActive(false);
         table.GetChild(0).GetChild(7).gameObject.SetActive(true);
-      
+
+        tempMaterial.SetActive(true);
+        //tempConfetti.Play();
+        StateController.Instance.SetState(State.RealizarRemoçãoIntrodutor);
+    }
+
+    public void ProcessRealizarRemoçãoIntrodutor()
+    {
         tempMaterial.SetActive(true);
         //tempConfetti.Play();
         StateController.Instance.SetState(State.FecharSistema);
@@ -552,7 +589,7 @@ public class ControllerUTI : MonoBehaviour
         table.GetChild(0).GetChild(7).gameObject.SetActive(true);
       
         tempMaterial.SetActive(true);
-        //tempConfetti.Play();
-        StateController.Instance.SetState(State.CobrirCateter);
+        tempConfetti.Play();
+        StateController.Instance.SetState(State.FazerCoberturaDoCateter);
     }
 }

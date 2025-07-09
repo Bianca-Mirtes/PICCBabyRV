@@ -6,16 +6,6 @@ using UnityEngine.UI;
 
 public class ControllerSymptoms : MonoBehaviour
 {
-    processNewCaseOfSymptom(false,
-            "Esse paciente, Recém-nascido de Rosenia está sobre bom estado",
-            "Livia Costa",
-            "Luciana Costa",
-            35,
-            "Incubadora aquecida para temperatura axilar 36,5-37,5° C\r\n Em uso\r\nOximetria de pulso contínua | Em uso\r\nCabeceira elevada em 30° \r\nAtenção\r\nCPAP Nasal: FiO2 40%, PEEP 6 mmHg\r\nAtenção\r\n05. Dieta zero, registrar resíduo gástrico em balanço hídrico\r\n12h  15h  18h  21h  24h  03h  06h  9h \r\n06. Oxacilina (50mg/1ml) ​fazer 0,6 ml  + 9,4 ml  SF 0,9%  , 8/8 horas,  EV,  em 30 minutos  D0/7\r\n08h                 16h              24h\r\n07. Amicacina ( 5 mg/ml), fazer 3,6 ml + 1,4 ml SF 0,9%, EV, 24h. D0/7\r\n                        20h\r\n08.Hidratação Venosa para 24h\r\nSG 10% —-------------- 99,3 ml \r\nNaCl 0,9% —----------19,5 ml\r\nKCL 19,1%------------1,2\r\nVolume Total —------ 120ml\r\nVelocidade de infusão em BIC:5 ml/h\r\n(VIG 6,9 Concentração de glicose menor que 12,5%)\r\n\r\n",
-            1200,
-            5
-            );
-
     protected List<Baby> Babys = new List<Baby>();
     public List<Canvas> canvasSympton = new List<Canvas>();
     [SerializeField] private List<Transform> incubators;
@@ -50,6 +40,16 @@ public class ControllerSymptoms : MonoBehaviour
             "Incubadora aquecida para temperatura axilar 36,5-37,5° C\r\n Em uso\r\nOximetria de pulso contínua | Em uso\r\nCabeceira elevada em 30° \r\nAtenção\r\nCPAP Nasal: FiO2 40%, PEEP 6 mmHg\r\nAtenção\r\n05. Dieta zero, registrar resíduo gástrico em balanço hídrico\r\n12h  15h  18h  21h  24h  03h  06h  9h \r\n06. Oxacilina (50mg/1ml) ​fazer 0,6 ml  + 9,4 ml  SF 0,9%  , 8/8 horas,  EV,  em 30 minutos  D0/7\r\n08h                 16h              24h\r\n07. Amicacina ( 5 mg/ml), fazer 3,6 ml + 1,4 ml SF 0,9%, EV, 24h. D0/7\r\n                        20h\r\n08.Hidratação Venosa para 24h\r\nSG 10% —-------------- 99,3 ml \r\nNaCl 0,9% —----------19,5 ml\r\nKCL 19,1%------------1,2\r\nVolume Total —------ 120ml\r\nVelocidade de infusão em BIC:5 ml/h\r\n(VIG 6,9 Concentração de glicose menor que 12,5%)\r\n\r\n",
             1200,
             3
+            );
+
+        processNewCaseOfSymptom(false,
+            "Esse paciente, Recém-nascido de Rosenia está sobre bom estado",
+            "Livia Costa",
+            "Luciana Costa",
+            35,
+            "Incubadora aquecida para temperatura axilar 36,5-37,5° C\r\n Em uso\r\nOximetria de pulso contínua | Em uso\r\nCabeceira elevada em 30° \r\nAtenção\r\nCPAP Nasal: FiO2 40%, PEEP 6 mmHg\r\nAtenção\r\n05. Dieta zero, registrar resíduo gástrico em balanço hídrico\r\n12h  15h  18h  21h  24h  03h  06h  9h \r\n06. Oxacilina (50mg/1ml) ​fazer 0,6 ml  + 9,4 ml  SF 0,9%  , 8/8 horas,  EV,  em 30 minutos  D0/7\r\n08h                 16h              24h\r\n07. Amicacina ( 5 mg/ml), fazer 3,6 ml + 1,4 ml SF 0,9%, EV, 24h. D0/7\r\n                        20h\r\n08.Hidratação Venosa para 24h\r\nSG 10% —-------------- 99,3 ml \r\nNaCl 0,9% —----------19,5 ml\r\nKCL 19,1%------------1,2\r\nVolume Total —------ 120ml\r\nVelocidade de infusão em BIC:5 ml/h\r\n(VIG 6,9 Concentração de glicose menor que 12,5%)\r\n\r\n",
+            1200,
+            5
             );
 
         processNewCaseOfSymptom(true,

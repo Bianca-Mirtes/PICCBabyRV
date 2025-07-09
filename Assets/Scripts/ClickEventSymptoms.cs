@@ -54,7 +54,7 @@ public class ClickEventSymptoms : MonoBehaviour
                         RenderForm();
                         BlockOthersCanvasBaby();
                         FindObjectOfType<ControllerSymptoms>().FindIncubator(BabySelect);
-                        StateController.Instance.SetState(State.RealizarPuncture);
+                        StateController.Instance.SetState(State.RealizarPunção);
                         AudioManager.instance.Play(correct_sound_name);
                         TextResult.text = "Isso mesmo! Agora pegue o formulário que está na bancada e leve para fora, para que a mãe assine!";
                     }
