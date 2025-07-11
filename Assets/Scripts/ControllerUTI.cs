@@ -341,16 +341,11 @@ public class ControllerUTI : MonoBehaviour
 
     public void verifSocketsSurgicalField(XRSocketInteractor socket)
     {
-        IXRSelectInteractable selectInteractable = socket.GetOldestInteractableSelected();
-        GameObject currentMaterial = selectInteractable.transform.gameObject;
-
-        if (currentMaterial != null)
-            Destroy(currentMaterial);
-
+        DestroyMaterial(socket);
         countSurgicalFields++;
     }
 
-    public void verifSocketCateter(XRSocketInteractor socket)
+    public void DestroyMaterial(XRSocketInteractor socket)
     {
         IXRSelectInteractable selectInteractable = socket.GetOldestInteractableSelected();
         GameObject currentMaterial = selectInteractable.transform.gameObject;
@@ -438,8 +433,8 @@ public class ControllerUTI : MonoBehaviour
             {
                 if (leftHand.name.Equals("LeftHand") && rightHand.name.Equals("RightHand"))
                 {
-                    leftHand.GetComponent<SkinnedMeshRenderer>().material = luvaMaterial;
-                    rightHand.GetComponent<SkinnedMeshRenderer>().material = luvaMaterial;
+                    leftHand.GetComponent<SkinnedMeshRenderer>().material = handMaterial;
+                    rightHand.GetComponent<SkinnedMeshRenderer>().material = handMaterial;
                 }
                 else
                 {
@@ -451,7 +446,6 @@ public class ControllerUTI : MonoBehaviour
                         rightHandMesh.material = handMaterial;
                     }
                 }
-
             }
             Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
             table.GetChild(0).GetChild(5).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Realize a troca de luvas:";
@@ -576,20 +570,40 @@ public class ControllerUTI : MonoBehaviour
 
     public void ProcessRealizarRemoçãoIntrodutor()
     {
-        tempMaterial.SetActive(true);
-        //tempConfetti.Play();
-        StateController.Instance.SetState(State.FecharSistema);
-    }
-
-    private void ProcessFecharSistema()
-    {
         Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
         table.GetChild(0).GetChild(7).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Cobertura do Cateter: ";
         table.GetChild(0).GetChild(6).gameObject.SetActive(false);
         table.GetChild(0).GetChild(7).gameObject.SetActive(true);
-      
+
         tempMaterial.SetActive(true);
         tempConfetti.Play();
         StateController.Instance.SetState(State.FazerCoberturaDoCateter);
+    }
+
+    public void EndProcedure()
+    {
+        GameObject.FindWithTag("MainCamera").transform.GetChild(2).gameObject.SetActive(false); // gorro
+        GameObject.FindWithTag("MainCamera").transform.GetChild(3).gameObject.SetActive(false); // mascara
+        Transform leftHand = GameObject.FindWithTag("LeftHand").transform;
+        Transform rightHand = GameObject.FindWithTag("RightHand").transform;
+
+        if (leftHand != null && rightHand != null)
+        {
+            if (leftHand.name.Equals("LeftHand") && rightHand.name.Equals("RightHand"))
+            {
+                leftHand.GetComponent<SkinnedMeshRenderer>().material = handMaterial;
+                rightHand.GetComponent<SkinnedMeshRenderer>().material = handMaterial;
+            }
+            else
+            {
+                SkinnedMeshRenderer leftHandMesh = leftHand.Find("LeftHand").GetChild(1).GetComponent<SkinnedMeshRenderer>();
+                SkinnedMeshRenderer rightHandMesh = rightHand.Find("RightHand").GetChild(1).GetComponent<SkinnedMeshRenderer>();
+                if (leftHandMesh != null && rightHandMesh != null)
+                {
+                    leftHandMesh.material = handMaterial;
+                    rightHandMesh.material = handMaterial;
+                }
+            }
+        }
     }
 }

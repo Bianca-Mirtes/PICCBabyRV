@@ -8,10 +8,12 @@ public class IntroductorController : MonoBehaviour
 {
     public AnimationClip clip;       // Sua animação
     public float frameRate = 30f;    // Frame rate da animação
+    public GameObject nextMaterial;
 
     private PlayableGraph graph;
     private AnimationClipPlayable clipPlayable;
     private float currentFrame = 0f;
+    private bool isPressing = false;
 
     // Start is called before the first frame update
     void Start()
@@ -32,8 +34,16 @@ public class IntroductorController : MonoBehaviour
         clipPlayable.SetSpeed(0);
     }
 
+    public void Pressing(bool value)
+    {
+        isPressing = value;
+    }
+
     public void NextKeyframe()
     {
+        if(!isPressing)
+            return; // Não faz nada se não estiver pressionando
+
         // Avança um frame
         currentFrame++;
 
@@ -43,7 +53,8 @@ public class IntroductorController : MonoBehaviour
         if (time > clip.length)
         {
             time = clip.length;
-            FindFirstObjectByType<ControllerUTI>().ProcessRealizarCompleteIntroduction();
+            ControllerUTI.Instance.GetCurrentMaterial(nextMaterial);
+            ControllerUTI.Instance.ProcessRealizarRemoçãoIntrodutor();
         }
         clipPlayable.SetTime(time);
         clipPlayable.SetTime(time); // chamada dupla para forçar update visual

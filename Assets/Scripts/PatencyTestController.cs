@@ -7,14 +7,9 @@ using UnityEngine.UI;
 public class PatencyTestController : MonoBehaviour
 {
     public Transform soro;
-
+    public GameObject nextMaterial;
     private bool isOpen = false;
-
     private int count = 0;
-
-    // Vector3(0.022,0.183,0.023)
-    // Vector3(84.687,181.337,190.376)
-
 
     private void Seringa()
     {
@@ -25,7 +20,8 @@ public class PatencyTestController : MonoBehaviour
             count++;
             if (count == 2)
             {
-                StateController.Instance.SetState(State.RealizarTesteDePermeabilidade);
+                ControllerUTI.Instance.GetCurrentMaterial(nextMaterial);
+                ControllerUTI.Instance.ProcessRealizarTesteDePermeabilidade();
             }
         }
         else
