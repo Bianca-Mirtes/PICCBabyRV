@@ -28,11 +28,13 @@ public class FaucetController : MonoBehaviour
         if (!isOpen)
         {
             particleSystem.Play();
+            GetComponent<AudioSource>().Play();
             particleSystem.gameObject.GetComponent<BoxCollider>().enabled = true;
         }
         else
         {
             particleSystem.Stop();
+            GetComponent<AudioSource>().Stop();
             particleSystem.gameObject.GetComponent<BoxCollider>().enabled = false;
         }
     }
