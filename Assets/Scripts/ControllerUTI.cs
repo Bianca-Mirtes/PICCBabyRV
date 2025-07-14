@@ -85,8 +85,6 @@ public class ControllerUTI : MonoBehaviour
             obj.SetActive(false);
     }
 
-   
-
     void Update()
     {
         if (buttonSelect != null)
@@ -118,9 +116,14 @@ public class ControllerUTI : MonoBehaviour
             ProcessRealizarAntissepsia();
     }
 
-    public void GetCurrentMaterial(GameObject material)
+    public void SetCurrentMaterial(GameObject material)
     {
         tempMaterial = material;
+    }
+
+    public GameObject GetCurrentMaterial()
+    {
+        return tempMaterial;
     }
 
     public void GetConfetti(ParticleSystem confetti)
@@ -164,7 +167,6 @@ public class ControllerUTI : MonoBehaviour
         currentIncubator = incubator;
         currentIncubator.GetChild(2).gameObject.SetActive(false);
         currentIncubator.GetChild(3).gameObject.SetActive(false);
-        currentIncubator.GetChild(1).GetChild(0).GetChild(0).gameObject.SetActive(false);
     }
 
     public void SetRegion(bool isSuperiorMembers)
@@ -178,9 +180,13 @@ public class ControllerUTI : MonoBehaviour
             Destroy(currentIncubator.GetChild(0).GetChild(0).GetChild(1).gameObject);
             Destroy(currentIncubator.GetChild(0).GetChild(1).GetChild(2).gameObject);
             Destroy(currentIncubator.GetChild(0).GetChild(2).GetChild(1).gameObject);
+            Destroy(currentIncubator.GetChild(0).GetChild(3).GetChild(1).gameObject);
+            Destroy(currentIncubator.GetChild(0).GetChild(4).GetChild(1).gameObject);
+            Destroy(currentIncubator.GetChild(0).GetChild(5).GetChild(1).gameObject);
+            Destroy(currentIncubator.GetChild(0).GetChild(6).GetChild(1).gameObject);
 
-            currentIncubator.GetChild(0).GetChild(3).gameObject.SetActive(true);
-            currentIncubator.GetChild(0).GetChild(4).gameObject.SetActive(true);
+            currentIncubator.GetChild(0).GetChild(7).gameObject.SetActive(true);
+            currentIncubator.GetChild(0).GetChild(8).gameObject.SetActive(true);
         }
         else
         {
@@ -190,9 +196,13 @@ public class ControllerUTI : MonoBehaviour
             Destroy(currentIncubator.GetChild(0).GetChild(0).GetChild(0).gameObject);
             Destroy(currentIncubator.GetChild(0).GetChild(1).GetChild(1).gameObject);
             Destroy(currentIncubator.GetChild(0).GetChild(2).GetChild(0).gameObject);
+            Destroy(currentIncubator.GetChild(0).GetChild(3).GetChild(0).gameObject);
+            Destroy(currentIncubator.GetChild(0).GetChild(4).GetChild(0).gameObject);
+            Destroy(currentIncubator.GetChild(0).GetChild(5).GetChild(0).gameObject);
+            Destroy(currentIncubator.GetChild(0).GetChild(6).GetChild(0).gameObject);
 
-            currentIncubator.GetChild(0).GetChild(3).gameObject.SetActive(true);
-            currentIncubator.GetChild(0).GetChild(5).gameObject.SetActive(true);
+            currentIncubator.GetChild(0).GetChild(7).gameObject.SetActive(true);
+            currentIncubator.GetChild(0).GetChild(9).gameObject.SetActive(true);
         }
     }
 
@@ -335,6 +345,7 @@ public class ControllerUTI : MonoBehaviour
         }
         GameObject.FindWithTag("MainCamera").transform.GetChild(2).gameObject.SetActive(true); // gorro
         GameObject.FindWithTag("MainCamera").transform.GetChild(3).gameObject.SetActive(true); // mascara
+        currentIncubator.GetChild(1).GetChild(0).GetChild(0).gameObject.SetActive(false);
         currentMayosTablePICC.SetActive(true);
         StateController.Instance.SetState(State.MensurarCateter);
     }
@@ -502,6 +513,11 @@ public class ControllerUTI : MonoBehaviour
         Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
         table.GetChild(0).GetChild(6).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Aplique o Torniquete no paciente:";
         table.GetChild(0).GetChild(4).gameObject.SetActive(false);
+        if (isSuperiorMembers)
+            table.GetChild(0).GetChild(6).GetChild(1).gameObject.SetActive(true);
+        else
+            table.GetChild(0).GetChild(6).GetChild(2).gameObject.SetActive(true);
+
         table.GetChild(0).GetChild(6).gameObject.SetActive(true);
         tempMaterial.SetActive(true);
         tempConfetti.Play();
@@ -576,7 +592,7 @@ public class ControllerUTI : MonoBehaviour
         table.GetChild(0).GetChild(7).gameObject.SetActive(true);
 
         tempMaterial.SetActive(true);
-        tempConfetti.Play();
+        //tempConfetti.Play();
         StateController.Instance.SetState(State.FazerCoberturaDoCateter);
     }
 
@@ -605,5 +621,6 @@ public class ControllerUTI : MonoBehaviour
                 }
             }
         }
+        currentIncubator.GetChild(1).GetChild(0).GetChild(0).gameObject.SetActive(true);
     }
 }

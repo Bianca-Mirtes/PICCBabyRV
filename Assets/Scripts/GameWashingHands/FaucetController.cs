@@ -28,10 +28,12 @@ public class FaucetController : MonoBehaviour
         if (!isOpen)
         {
             particleSystem.Play();
+            particleSystem.gameObject.GetComponent<BoxCollider>().enabled = true;
         }
         else
         {
             particleSystem.Stop();
+            particleSystem.gameObject.GetComponent<BoxCollider>().enabled = false;
         }
     }
 

@@ -8,6 +8,11 @@ public class AnimationController : MonoBehaviour
     public GameObject obj;
     public string animationName;
 
+    private void Start()
+    {
+        GetComponent<Animator>().Play(animationName);
+    }
+
     public void EnableObj()
     {
         gameObject.SetActive(false);

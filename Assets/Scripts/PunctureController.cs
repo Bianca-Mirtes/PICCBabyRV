@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.XR;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class PunctureController : MonoBehaviour
 {
@@ -30,7 +29,7 @@ public class PunctureController : MonoBehaviour
                     transform.parent.GetComponent<Animator>().speed = 0;
                     transform.parent.parent.parent.GetChild(1).GetComponent<Animator>().Play("Introduzir");
 
-                    UnityEngine.Transform tabletInfo = GameObject.Find("TabletInfos").transform.GetChild(0);
+                    Transform tabletInfo = GameObject.Find("TabletInfos").transform.GetChild(0);
                     tabletInfo.GetChild(7).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Retire a bainha protetora: ";
                     tabletInfo.GetChild(7).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Aponte o raio para a bainha protetora e pressione o gatilho do controle para retirá-la!";
                     GameObject.Find("TabletInfos").transform.GetChild(1).GetComponent<ParticleSystem>().Play();

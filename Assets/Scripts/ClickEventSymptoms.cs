@@ -54,7 +54,7 @@ public class ClickEventSymptoms : MonoBehaviour
                         RenderForm();
                         BlockOthersCanvasBaby();
                         FindObjectOfType<ControllerSymptoms>().FindIncubator(BabySelect);
-                        StateController.Instance.SetState(State.RealizarPunção);
+                        StateController.Instance.SetState(State.ColetarAutorização);
                         AudioManager.instance.Play(correct_sound_name);
                         TextResult.text = "Isso mesmo! Agora pegue o formulário que está na bancada e leve para fora, para que a mãe assine!";
                     }
@@ -94,7 +94,6 @@ public class ClickEventSymptoms : MonoBehaviour
         canvaSymptom.GetComponent<Animator>().SetBool("isFadeOut", false);
         canvaSymptom.GetComponent<Animator>().SetBool("isFadeIn", false);
 
-        canvaSymptom.GetComponent<CanvasGroup>().alpha = 1;
         canvaResult.GetComponent<CanvasGroup>().alpha = 0;
         canvaSymptom.gameObject.transform.localScale = new Vector3(0f, 0f, 0f);
         canvaResult.gameObject.transform.localScale = new Vector3(2.25f, 2.25f, 2.25f);

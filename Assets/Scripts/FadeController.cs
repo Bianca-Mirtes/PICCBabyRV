@@ -7,6 +7,7 @@ public class FadeController : MonoBehaviour
     private CanvasGroup canvas;
     private bool fadeIn = false;
     private bool fadeOut = false;
+    private GameObject objForDesactivation = null;
 
     private void Start()
     {
@@ -24,6 +25,12 @@ public class FadeController : MonoBehaviour
             Invoke("FadeOut", time);
         else
             Invoke("FadeIn", time);
+    }
+
+    public void FadeWithDesactivationOfObject(GameObject obj)
+    {
+        objForDesactivation = obj;
+        FadeInForFadeOut(5f);
     }
 
     public void FadeInForFadeOut(float time)
@@ -49,10 +56,17 @@ public class FadeController : MonoBehaviour
         }
         if (fadeOut)
         {
-            if(canvas.alpha > 0f)
+            if (canvas.alpha > 0f)
                 canvas.alpha -= Time.deltaTime;
             else
+            {
                 fadeOut = false;
+                if(objForDesactivation != null)
+                {
+                    objForDesactivation.SetActive(false);
+                    objForDesactivation = null;
+                }
+            }
         }
     }
     public void FadeIn()
