@@ -22,7 +22,19 @@ Material:
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs: []
+    m_TexEnvs:
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _Add_Alpha: 0.25
@@ -33,7 +45,12 @@ Material:
     - _Divide_Color: 1
     - _Fresnel_Power: 0.6
     - _Noise_Subtract: 0.605
-    m_Colors: []
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    m_Colors:
+    - _BiRP: {r: 1, g: 0.8361742, b: 0, a: 0}
+    - _HDRP: {r: 0, g: 0.37522697, b: 1, a: 0}
+    - _URP: {r: 0, g: 1, b: 0.0681729, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &7159116361101208430
 MonoBehaviour:

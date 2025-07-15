@@ -3,7 +3,32 @@ guid: f7a54c57aa91bee7d8c2c78c36a40911
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Azul_marca
+    second: {fileID: 2100000, guid: 0fc5bc33601782647b025cf03c30454c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plastico_Branco
+    second: {fileID: 2100000, guid: a0cd0b23179260e478d494b3d0b5e6a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Preto_letreiro
+    second: {fileID: 2100000, guid: e5f7f8b14d5134e49ad4cbc911948d2d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: material_1
+    second: {fileID: 2100000, guid: 7e5893a2ce700d44cbf683e645c14819, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: material_1_0
+    second: {fileID: 2100000, guid: 3dd75b28ab160c445a3bdec1f79aadd8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

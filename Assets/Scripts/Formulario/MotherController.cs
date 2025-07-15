@@ -7,6 +7,8 @@ public class MotherController : MonoBehaviour
 {
     public bool signatureMom = false;
     private bool stepStarted = false;
+    public GameObject setaMom;
+    public GameObject door;
 
     private void Update()
     {
@@ -38,13 +40,16 @@ public class MotherController : MonoBehaviour
 
     public void ResetStep()
     {
-        transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
+        transform.Find("Resposta").GetChild(0).gameObject.SetActive(false);
         Invoke("ResetDialogue", 10f);
     }
     private void ResetDialogue()
     {
         Transform player = GameObject.FindWithTag("Player").transform;
         player.position = new Vector3(-1.5f, player.position.y, -6.7f);
+        door.GetComponent<Animator>().Play("Close");
+        setaMom.SetActive(true);
+        stepStarted = false;
     }
 
     public void SignForm()

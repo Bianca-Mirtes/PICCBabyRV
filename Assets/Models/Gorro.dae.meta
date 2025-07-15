@@ -3,7 +3,17 @@ guid: 4085e26cf02c29e499f52a6d003941ce
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: __auto_1
+    second: {fileID: 2100000, guid: 302591b217231cf419ab8942d0c2a284, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: __auto_2
+    second: {fileID: 2100000, guid: 1d939c1670e3f1145acafcb38c62b63b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -43,7 +53,7 @@ ModelImporter:
     importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
+    importCameras: 0
     importLights: 1
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2

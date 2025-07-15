@@ -19,8 +19,8 @@ public class PunctureController : MonoBehaviour
     {
         InputDeviceCharacteristics leftHandCharacteristics = InputDeviceCharacteristics.Left | InputDeviceCharacteristics.Controller;
         InputDevices.GetDevicesWithCharacteristics(leftHandCharacteristics, devices);
-        //devices[0].TryGetFeatureValue(CommonUsages.trigger, out float triggerValue);
-        if (/*triggerValue > 0.1f ||*/ Input.GetKeyDown(KeyCode.P))
+        devices[0].TryGetFeatureValue(CommonUsages.trigger, out float triggerValue);
+        if (triggerValue > 0.1f)
         {
             if (other.gameObject.CompareTag("Correct"))
             {

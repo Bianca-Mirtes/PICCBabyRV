@@ -221,11 +221,10 @@ public class ControllerUTI : MonoBehaviour
             teleportationMae[i].SetActive(false);
     }
 
-    public void ProcessColetarAutorização(ParticleSystem sucess)
+    public void ProcessColetarAutorização()
     {
         FindFirstObjectByType<MotherController>().gameObject.SetActive(false);
         HideObject(form, 5f);
-        sucess.Play();
         finishProcessCanvas.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Parabéns! Você concluiu a etapa de assinatura,\r\nagora prepare-se para a etapa de Coleta dos Materiais!";
         finishProcessCanvas.GetComponent<FadeController>().FadeInForFadeOut(8f);
         finishProcessCanvas.GetChild(0).GetChild(1).GetComponent<ParticleSystem>().Play();

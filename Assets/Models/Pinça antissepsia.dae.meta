@@ -3,7 +3,12 @@ guid: dc74f155feed65b1a9d15a9e6f315427
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Aluminio
+    second: {fileID: 2100000, guid: 8c5c100c694980e4c9f43fa0a9e6fad3, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -43,7 +48,7 @@ ModelImporter:
     importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
+    importCameras: 0
     importLights: 1
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
