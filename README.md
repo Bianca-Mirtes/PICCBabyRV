@@ -43,11 +43,12 @@ Este projeto foi iniciado como uma iniciativa voluntária e posteriormente conte
 > **PIT/Ebserh/MEJC nº 08/2024** – com apoio do **CNPq**.
 
 Desenvolvido por:
-Bianca Mirtes Araújo Miranda - Graduanda do Bacharel em Tecnologia da Informação no Metrópole Digital - IMD/UFRN e pesquisadora do Centro de Competência EMBRAPII em Tecnologias Imersivas - AKCIT
-Alyson Matheus Souza - Professor do Metrópole Digital - IMD/UFRN e pesquisador do Centro de Competência EMBRAPII em Tecnologias Imersivas - AKCIT
-Débora Feitosa de França - Doutoranda do programa de pós-graduação da Universidade Potiguar
-Ricardo Cobucci - Chefe do setor de pesquisa e inovação tecnológica na MEJC/EBSERH
-Júlia Millene Gomes Magalhães de Lacerda - Graduanda de Medicina na Universidade Federal do Rio Grande do Norte
+
+- Bianca Mirtes Araújo Miranda - Graduanda do Bacharel em Tecnologia da Informação no Metrópole Digital - IMD/UFRN e pesquisadora do Centro de Competência EMBRAPII em Tecnologias Imersivas - AKCIT
+- Alyson Matheus Souza - Professor do Metrópole Digital - IMD/UFRN e pesquisador do Centro de Competência EMBRAPII em Tecnologias Imersivas - AKCIT
+- Débora Feitosa de França - Doutoranda do programa de pós-graduação da Universidade Potiguar
+- Ricardo Cobucci - Chefe do setor de pesquisa e inovação tecnológica na MEJC/EBSERH
+- Júlia Millene Gomes Magalhães de Lacerda - Graduanda de Medicina na Universidade Federal do Rio Grande do Norte
 
 ---
 
