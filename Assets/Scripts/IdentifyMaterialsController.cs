@@ -10,22 +10,22 @@ using Unity.VisualScripting;
 public class IdentifyMaterialsController : MonoBehaviour
 {
     [Header("Attributes")]
-    [SerializeField] private int QuantidadeNecessaria = 1;
-    [SerializeField] private bool isCorrect;
-    [SerializeField] private int QuantidadePreenchida = 0;
+    private int QuantidadeNecessaria = 2;
+    private bool isCorrect;
+    private int QuantidadePreenchida = 0;
 
     public TextMeshProUGUI MostrarQuantidadeNecessaria;
     public TextMeshProUGUI MostrarQuantidadePreenchida;
 
     private GameObject currentMaterial;
 
-     void Start()
-     {
-          MostrarQuantidadeNecessaria.text = QuantidadeNecessaria.ToSafeString();
-     }
+    void Start()
+    {
+        MostrarQuantidadeNecessaria.text = QuantidadeNecessaria.ToSafeString();
+    }
 
-     public void IdentifyTouch(XRSocketInteractor socket)
-     {
+    public void IdentifyTouch(XRSocketInteractor socket)
+    {
         GameObject currentHook = socket.transform.parent.gameObject;
 
         IXRSelectInteractable selectInteractable = socket.GetOldestInteractableSelected();
@@ -48,9 +48,14 @@ public class IdentifyMaterialsController : MonoBehaviour
             QuantidadePreenchida++;
             MostrarQuantidadePreenchida.text = QuantidadePreenchida.ToString();
         }
-         else
+        else
             Debug.LogError("iteractable é null");
-     }
+    }
+    public void RemoveMaterial()
+    {
+        QuantidadePreenchida--;
+        MostrarQuantidadePreenchida.text = QuantidadePreenchida.ToString();
+    }
 
      /*Quando verificar que todos os items foram preenchidos e estão corretos, entao o enfermeiro pode pegar a caixa de materiais*/
      public void IsRightToAllowGrabOfMaterialTable(TextMeshProUGUI result)
@@ -62,6 +67,7 @@ public class IdentifyMaterialsController : MonoBehaviour
                 result.color = Color.white;
                 result.text = "Parabéns, siga para a proxima etapa!";
                 StateController.Instance.SetState(State.LavarMaos);
+                Destroy(currentMaterial);
                 FindFirstObjectByType<ControllerUTI>().ProcessLavarAsMaos();
                 AudioManager.instance.Play("correct_sound");
             }
@@ -82,6 +88,7 @@ public class IdentifyMaterialsController : MonoBehaviour
                 result.color = Color.green;
                 result.text = "Material Correto!";
                 AudioManager.instance.Play("correct_sound");
+                Destroy(currentMaterial);
             }
             else
             {

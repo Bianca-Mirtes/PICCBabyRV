@@ -33,6 +33,12 @@ public class FadeController : MonoBehaviour
         FadeInForFadeOut(5f);
     }
 
+    public void FadeOutWithDesactivationOfObject(GameObject obj, float time)
+    {
+        objForDesactivation = obj;
+        Invoke("FadeOut", time);
+    }
+
     public void FadeInForFadeOut(float time)
     {
         FadeIn();

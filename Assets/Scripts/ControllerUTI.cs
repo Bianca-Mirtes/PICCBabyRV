@@ -588,7 +588,7 @@ public class ControllerUTI : MonoBehaviour
     {
         Transform table = currentMayosTablePICC.transform.Find("TabletInfos");
         table.GetChild(0).GetChild(4).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Cobertura do Cateter: ";
-        table.GetChild(0).GetChild(4).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Encha a seringa com soro fisiológico";
+        table.GetChild(0).GetChild(4).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Pegue o adesivo esteril e coloque sobre o cateter para manté-lo fixo na pele";
         table.GetChild(0).GetChild(9).gameObject.SetActive(false);
         table.GetChild(0).GetChild(4).gameObject.SetActive(true);
 
@@ -629,5 +629,6 @@ public class ControllerUTI : MonoBehaviour
         FinishProcediment(true);
         AudioManager.instance.Play("correct_sound");
         currentIncubator.GetChild(1).GetChild(0).GetChild(0).gameObject.SetActive(true);
+        table.GetChild(0).GetComponent<FadeController>().FadeOutWithDesactivationOfObject(currentMayosTablePICC, 3f);
     }
 }
