@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3859944843503463965}
   - component: {fileID: 8977131678403668968}
   - component: {fileID: 3306049092711250717}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: "Pin\xE7aAnatomica"
   m_TagString: CasoPicc
   m_Icon: {fileID: 0}

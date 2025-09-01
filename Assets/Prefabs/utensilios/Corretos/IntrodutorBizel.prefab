@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 4450113273103156828}
   - component: {fileID: 4136282931790607020}
   - component: {fileID: 6128635469630777314}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: IntrodutorBizel
   m_TagString: CasoPicc
   m_Icon: {fileID: 0}

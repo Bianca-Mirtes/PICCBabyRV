@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 5343846040369718096}
   - component: {fileID: 5285820606090236902}
   - component: {fileID: 2875326577571802288}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: EquipoPSoro
   m_TagString: CasoPicc
   m_Icon: {fileID: 0}

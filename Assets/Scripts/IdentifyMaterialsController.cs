@@ -10,7 +10,7 @@ using Unity.VisualScripting;
 public class IdentifyMaterialsController : MonoBehaviour
 {
     [Header("Attributes")]
-    private int QuantidadeNecessaria = 2;
+    private int QuantidadeNecessaria = 14;
     private bool isCorrect;
     private int QuantidadePreenchida = 0;
 
@@ -18,6 +18,7 @@ public class IdentifyMaterialsController : MonoBehaviour
     public TextMeshProUGUI MostrarQuantidadePreenchida;
 
     private GameObject currentMaterial;
+    private List<int> materialsCollected = new List<int>();
 
     void Start()
     {
@@ -70,6 +71,8 @@ public class IdentifyMaterialsController : MonoBehaviour
                 Destroy(currentMaterial);
                 FindFirstObjectByType<ControllerUTI>().ProcessLavarAsMaos();
                 AudioManager.instance.Play("correct_sound");
+                QuantidadePreenchida = 0;
+                materialsCollected.Clear();
             }
             else
             {
@@ -82,12 +85,17 @@ public class IdentifyMaterialsController : MonoBehaviour
         }
         else
         {
-
             if (isCorrect)
             {
                 result.color = Color.green;
+                if (materialsCollected.Contains(currentMaterial.layer))
+                {
+                    result.text = "Material já coletado!";
+                    return;
+                }
                 result.text = "Material Correto!";
                 AudioManager.instance.Play("correct_sound");
+                materialsCollected.Add(currentMaterial.layer);
                 Destroy(currentMaterial);
             }
             else

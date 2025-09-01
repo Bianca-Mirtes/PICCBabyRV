@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 7258523593407752786}
   - component: {fileID: 2149341610916286602}
   - component: {fileID: 6301428168497157164}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Garrote
   m_TagString: CasoPicc
   m_Icon: {fileID: 0}

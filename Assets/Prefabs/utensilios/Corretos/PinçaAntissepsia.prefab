@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 4072915400990401966}
   - component: {fileID: 9096096449153581499}
   - component: {fileID: 1508474428047967935}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: "Pin\xE7aAntissepsia"
   m_TagString: CasoPicc
   m_Icon: {fileID: 0}

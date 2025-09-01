@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 1646785787402677895}
   - component: {fileID: 6064216425119019561}
   - component: {fileID: 7347517776193116496}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Soro Fisiologico
   m_TagString: CasoPicc
   m_Icon: {fileID: 0}

@@ -147,6 +147,8 @@ public class ControllerUTI : MonoBehaviour
 
     public void FinishProcediment(bool itIsRight)
     {
+        StateController.Instance.SetState(State.VerificarCasoPicc);
+
         foreach (var button in buttons)
             if (button != buttonSelect)
                 button.enabled = true;

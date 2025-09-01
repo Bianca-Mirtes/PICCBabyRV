@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 9105584814931073126}
   - component: {fileID: 7050665863160285349}
   - component: {fileID: 4682313981036864382}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CampoCirurgico
   m_TagString: CasoPicc
   m_Icon: {fileID: 0}

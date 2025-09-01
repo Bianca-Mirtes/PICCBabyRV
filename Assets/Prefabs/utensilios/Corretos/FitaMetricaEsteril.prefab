@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 4541304863990600791}
   - component: {fileID: 4890616750601592826}
   - component: {fileID: 1051147611095433692}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: FitaMetricaEsteril
   m_TagString: CasoPicc
   m_Icon: {fileID: 0}

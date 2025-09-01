@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8587079310979370421}
   - component: {fileID: 4826574365200721823}
   - component: {fileID: 7089187342726566578}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Seringa
   m_TagString: CasoPicc
   m_Icon: {fileID: 0}

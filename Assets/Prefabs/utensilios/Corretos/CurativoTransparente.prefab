@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 1716145202258800133}
   - component: {fileID: 2562873566104434132}
   - component: {fileID: 5602463720496149860}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: CurativoTransparente
   m_TagString: CasoPicc
   m_Icon: {fileID: 0}

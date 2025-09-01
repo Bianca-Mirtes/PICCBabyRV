@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 1759785960315680366}
   - component: {fileID: 7517357292863318339}
   - component: {fileID: 8059221629992080331}
-  m_Layer: 0
-  m_Name: Cateter de 1,9 Fr
+  m_Layer: 11
+  m_Name: Cateter
   m_TagString: CasoPicc
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
