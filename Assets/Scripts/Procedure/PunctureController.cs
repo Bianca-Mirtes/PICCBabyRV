@@ -6,10 +6,11 @@ using UnityEngine.XR;
 
 public class PunctureController : MonoBehaviour
 {
+    [SerializeField] private AudioSource babyCry;
     private List<InputDevice> devices = new List<InputDevice>();
     public void SetPositionCateter()
     {
-        UnityEngine.Transform cateter = transform.parent.parent.parent.GetChild(1);
+        Transform cateter = transform.parent.parent.parent.GetChild(1);
         cateter.position = new Vector3(-1.2973f, -0.5998f, 1.1743f);
         cateter.eulerAngles = new Vector3(332.37f, 301.26f, 355.80f);
     }
@@ -36,12 +37,13 @@ public class PunctureController : MonoBehaviour
                     tabletInfo.GetChild(7).GetChild(1).gameObject.SetActive(true);
                     tabletInfo.GetChild(7).GetChild(2).gameObject.SetActive(false);
                     transform.parent.parent.gameObject.SetActive(false);
-                   boolean = true;
+                    boolean = true;
                 }
             }
             else if(other.gameObject.CompareTag("Incorrect"))
             {
                 transform.parent.GetComponent<Animator>().speed = 0;
+                babyCry.Play();
                 GameObject.FindWithTag("ResetCanva").transform.GetChild(0).gameObject.SetActive(true);
             }
         }
