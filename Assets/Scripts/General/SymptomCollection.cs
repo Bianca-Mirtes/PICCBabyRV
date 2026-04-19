@@ -1,4 +1,5 @@
 
+using BabyData;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,25 +10,25 @@ public class SymptomCollection : MonoBehaviour
 {
 	public static SymptomCollection Instance { get; private set; }
 
-	protected List<Baby> Babys = new List<Baby>();
+	protected List<BabyCase> Babys = new List<BabyCase>();
 
 	private void Awake()
 	{
 		Instance = this;
 	}
 
-	public void AddSymptom(List<Baby> babys)
+	public void AddSymptom(List<BabyCase> babys)
 	{
 		Babys = babys;
 	}
 
-	public List<Baby> GetSymptoms()
+	public List<BabyCase> GetSymptoms()
 	{
 		return Babys;
 	}
 
-	public Baby FindUniqueBaby(string name)
+	public BabyCase FindUniqueBaby(string name)
 	{
-		return Babys.Find(d => d.Name == name);
+		return Babys.Find(d => d.baby.name == name);
 	}
 }

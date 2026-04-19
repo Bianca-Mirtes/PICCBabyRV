@@ -1,3 +1,4 @@
+using BabyData;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,70 +7,88 @@ using UnityEngine.UI;
 
 public class ControllerSymptoms : MonoBehaviour
 {
-    protected List<Baby> Babys = new List<Baby>();
+    protected List<BabyCase> Babys = new List<BabyCase>();
     public List<Canvas> canvasSympton = new List<Canvas>();
     [SerializeField] private List<Transform> incubators;
 
     void Start()
     {
         processNewCaseOfSymptom(true,
-            "Ela é um bebê de 17 dias de vida, peso de nascimento 1100g, idade gestacional de 32 semanas e 5 dias, parto cesáreo por sofrimento fetal e pré-eclâmpsia. Extubação no 12º dia de vida, há 5 dias em CPAP nasal , com FiO2 de 40%, PEEP de 6 mmHg, dieta por sonda orogástrica desde 3º dia de vida. Apresentou nas últimas 24 horas, 2 episódios de apneia, bradicardia e cianose, pele redilhada, hipotensão, hipoatividade, hipertermia, distensão abdominal e 3 episódios de resíduo gástrico esverdeado, sendo suspensa a dieta, mantendo SOG aberta.  Foi coletado exames de sangue e hemocultura, realizado raio-x. Iniciou hidratação, aguarda iniciar oxacilina, amicacina e dobutamina.  Está com acesso venoso periférico em membro inferior direito pérvio e sem sinais flogísticos.\r\n",
-            "Maria Alice Lopes",
-            "Marta Freitas Lopes",
-            32,
-            "Incubadora aquecida para temperatura axilar 36,5-37,5° C\r\n Em uso\r\nOximetria de pulso contínua | Em uso\r\nCabeceira elevada em 30° \r\nAtenção\r\nCPAP Nasal: FiO2 40%, PEEP 6 mmHg\r\nAtenção\r\n05. Dieta zero, registrar resíduo gástrico em balanço hídrico\r\n12h  15h  18h  21h  24h  03h  06h  9h \r\n06. Oxacilina (50mg/1ml) ​fazer 0,6 ml  + 9,4 ml  SF 0,9%  , 8/8 horas,  EV,  em 30 minutos  D0/7\r\n08h                 16h              24h\r\n07. Amicacina ( 5 mg/ml), fazer 3,6 ml + 1,4 ml SF 0,9%, EV, 24h. D0/7\r\n                        20h\r\n08.Hidratação Venosa para 24h\r\nSG 10% —-------------- 99,3 ml \r\nNaCl 0,9% —----------19,5 ml\r\nKCL 19,1%------------1,2\r\nVolume Total —------ 120ml\r\nVelocidade de infusão em BIC:5 ml/h\r\n(VIG 6,9 Concentração de glicose menor que 12,5%)\r\n\r\n",
-            1200,
-            1
+            "Recém-nascido pré-termo extremo, parto cesáreo de emergência por pré-eclâmpsia materna grave. Necessitou de ventilação mecânica nas primeiras horas de vida. " +
+            "Evoluiu com instabilidade hemodinâmica e sinais laboratoriais sugestivos de infecção sistêmica (PCR elevado, leucocitose).",
+            "Gabriel Ribeiro Santos",
+            "Ana Paula Ribeiro",
+            28,
+            "Paciente em UTI neonatal, em uso de antibioticoterapia endovenosa prolongada (vancomicina e gentamicina), nutrição parenteral total (NPT) e reposição eletrolítica frequente." +
+            " Acesso venoso periférico com dificuldade de manutenção e múltiplas punções prévias.",
+            1120,
+            1,
+            "Prematuridade extrema associada a sepse neonatal precoce.",
+            "Necessidade de acesso venoso central para infusão segura de NPT e antibioticoterapia prolongada, reduzindo risco de extravasamento e novas punções periféricas."
             );
 
         processNewCaseOfSymptom(false,
-            "Esse paciente, Recém-nascido de Rosenia está sobre bom estado",
-            "Violet Albuquerque",
-            "Rosenia Albuquerque",
-            35,
-            "Incubadora aquecida para temperatura axilar 36,5-37,5° C\r\n Em uso\r\nOximetria de pulso contínua | Em uso\r\nCabeceira elevada em 30° \r\nAtenção\r\nCPAP Nasal: FiO2 40%, PEEP 6 mmHg\r\nAtenção\r\n05. Dieta zero, registrar resíduo gástrico em balanço hídrico\r\n12h  15h  18h  21h  24h  03h  06h  9h \r\n06. Oxacilina (50mg/1ml) ​fazer 0,6 ml  + 9,4 ml  SF 0,9%  , 8/8 horas,  EV,  em 30 minutos  D0/7\r\n08h                 16h              24h\r\n07. Amicacina ( 5 mg/ml), fazer 3,6 ml + 1,4 ml SF 0,9%, EV, 24h. D0/7\r\n                        20h\r\n08.Hidratação Venosa para 24h\r\nSG 10% —-------------- 99,3 ml \r\nNaCl 0,9% —----------19,5 ml\r\nKCL 19,1%------------1,2\r\nVolume Total —------ 120ml\r\nVelocidade de infusão em BIC:5 ml/h\r\n(VIG 6,9 Concentração de glicose menor que 12,5%)\r\n\r\n",
-            1200,
-            2
+            "RN a termo, parto normal, boa adaptação neonatal. Evoluiu com icterícia leve no segundo dia de vida, compatível com quadro fisiológico.",
+            "Sofia Costa Menezes",
+            "Renata Costa Menezes",
+            37,
+            "Paciente em bom estado geral, ativo, mamando exclusivamente ao seio materno. Bilirrubinas dentro de limites esperados para a idade.",
+            3040,
+            2,
+            "Icterícia neonatal fisiológica.",
+            "Não há indicação de PICC, pois não há necessidade de medicações endovenosas prolongadas ou nutrição parenteral."
             );
 
         processNewCaseOfSymptom(true,
-            "Esse paciente, Recém-nascido de Marina Antonieta, nasceu com 33 semanas de gestação, já tem 8 dias de gestação, evoluir nas últimas 20 horas com piora no quadro clínico: regurgitações amareladas, episódios de hiperglicemia e apneias, precisando de pressão positiva contínua em vias aéreas. Optamos por iniciar outro esquema de antibióticos. Ele já está em jejum e iniciou hidratação venosa por acesso periférico.",
-            "Fabricio Campos",
-            "Marina Antonieta Campos",
+            "RN pré-termo moderado, parto vaginal. Evoluiu com taquipneia, retrações subcostais e necessidade de CPAP nasal. Apresenta intolerância à dieta enteral, com resíduos gástricos frequentes e distensão abdominal.",
+            "Helena Ferreira Lima",
+            "Juliana Ferreira Lima",
+            30,
+            "Paciente estável hemodinamicamente, em suporte respiratório não invasivo. Em uso de nutrição parenteral parcial e antibiótico profilático. Acesso venoso periférico com sinais iniciais de flebite.",
+            1200,
+            3,
+            "Síndrome do desconforto respiratório neonatal associada à intolerância alimentar.",
+            "Acesso venoso central indicado para administração contínua de nutrição parenteral e medicações vesicantes, evitando complicações periféricas."
+            );
+
+        processNewCaseOfSymptom(false,
+            "RN a termo, parto cesáreo eletivo. Evoluiu com desconforto respiratório leve nas primeiras horas de vida, compatível com TTN.",
+            "Livia Oliveira Rocha",
+            "Patrícia Oliveira Rocha",
+            36,
+            "Paciente em observação em berçário, em ar ambiente, com melhora progressiva do padrão respiratório. Alimentação enteral tolerada. Utiliza apenas acesso periférico temporário para hidratação venosa leve.;/////////",
+            2910,
+            4,
+            "Taquipneia transitória do recém-nascido (TTN).",
+            "Não há indicação de PICC, pois o tratamento é de curta duração e não requer acesso venoso central."
+            );
+
+        processNewCaseOfSymptom(true,
+            "RN pré-termo tardio, parto vaginal. Evoluiu após o 5º dia de vida com distensão abdominal, vômitos biliosos e sangue oculto nas fezes. Radiografia abdominal evidenciou pneumatose intestinal.",
+            "Lucas Nogueira Alves",
+            "Camila Nogueira Alves",
             33,
-            "Incubadora aquecida para temperatura axilar 36,5-37,5° C\r\n Em uso\r\nOximetria de pulso contínua | Em uso\r\nCabeceira elevada em 30° \r\nAtenção\r\nCPAP Nasal: FiO2 40%, PEEP 6 mmHg\r\nAtenção\r\n05. Dieta zero, registrar resíduo gástrico em balanço hídrico\r\n12h  15h  18h  21h  24h  03h  06h  9h \r\n06. Oxacilina (50mg/1ml) ​fazer 0,6 ml  + 9,4 ml  SF 0,9%  , 8/8 horas,  EV,  em 30 minutos  D0/7\r\n08h                 16h              24h\r\n07. Amicacina ( 5 mg/ml), fazer 3,6 ml + 1,4 ml SF 0,9%, EV, 24h. D0/7\r\n                        20h\r\n08.Hidratação Venosa para 24h\r\nSG 10% —-------------- 99,3 ml \r\nNaCl 0,9% —----------19,5 ml\r\nKCL 19,1%------------1,2\r\nVolume Total —------ 120ml\r\nVelocidade de infusão em BIC:5 ml/h\r\n(VIG 6,9 Concentração de glicose menor que 12,5%)\r\n\r\n",
-            1200,
-            3
-            );
-
-        processNewCaseOfSymptom(false,
-            "Esse paciente, Recém-nascido de Rosenia está sobre bom estado",
-            "Livia Costa",
-            "Luciana Costa",
-            35,
-            "Incubadora aquecida para temperatura axilar 36,5-37,5° C\r\n Em uso\r\nOximetria de pulso contínua | Em uso\r\nCabeceira elevada em 30° \r\nAtenção\r\nCPAP Nasal: FiO2 40%, PEEP 6 mmHg\r\nAtenção\r\n05. Dieta zero, registrar resíduo gástrico em balanço hídrico\r\n12h  15h  18h  21h  24h  03h  06h  9h \r\n06. Oxacilina (50mg/1ml) ​fazer 0,6 ml  + 9,4 ml  SF 0,9%  , 8/8 horas,  EV,  em 30 minutos  D0/7\r\n08h                 16h              24h\r\n07. Amicacina ( 5 mg/ml), fazer 3,6 ml + 1,4 ml SF 0,9%, EV, 24h. D0/7\r\n                        20h\r\n08.Hidratação Venosa para 24h\r\nSG 10% —-------------- 99,3 ml \r\nNaCl 0,9% —----------19,5 ml\r\nKCL 19,1%------------1,2\r\nVolume Total —------ 120ml\r\nVelocidade de infusão em BIC:5 ml/h\r\n(VIG 6,9 Concentração de glicose menor que 12,5%)\r\n\r\n",
-            1200,
-            5
-            );
-
-        processNewCaseOfSymptom(true,
-            "Esse paciente, Recém-nascido de Julia Freitas, nasceu com 40 semanas de gestação, já tem 8 dias de geestação, evoluir nas últimas 20 horas com piora no quadro clínico: regurgitações amareladas, episódios de hiperglicemia e apneias, precisando de pressão positiva contínua em vias aéreas. Optamos por iniciar outro esquema de antibióticos. Ele já está em jejum e iniciou hidratação venosa por acesso periférico.",
-            "João Pedro Freitas",
-            "Julia Freitas",
-            40,
-            "Incubadora aquecida para temperatura axilar 36,5-37,5° C\r\n Em uso\r\nOximetria de pulso contínua | Em uso\r\nCabeceira elevada em 30° \r\nAtenção\r\nCPAP Nasal: FiO2 40%, PEEP 6 mmHg\r\nAtenção\r\n05. Dieta zero, registrar resíduo gástrico em balanço hídrico\r\n12h  15h  18h  21h  24h  03h  06h  9h \r\n06. Oxacilina (50mg/1ml) ​fazer 0,6 ml  + 9,4 ml  SF 0,9%  , 8/8 horas,  EV,  em 30 minutos  D0/7\r\n08h                 16h              24h\r\n07. Amicacina ( 5 mg/ml), fazer 3,6 ml + 1,4 ml SF 0,9%, EV, 24h. D0/7\r\n                        20h\r\n08.Hidratação Venosa para 24h\r\nSG 10% —-------------- 99,3 ml \r\nNaCl 0,9% —----------19,5 ml\r\nKCL 19,1%------------1,2\r\nVolume Total —------ 120ml\r\nVelocidade de infusão em BIC:5 ml/h\r\n(VIG 6,9 Concentração de glicose menor que 12,5%)\r\n\r\n",
-            1200,
-            4
+            "Paciente em jejum absoluto, em uso de antibióticos de amplo espectro e nutrição parenteral total. Apresenta necessidade de infusão contínua de soluções hipertônicas.",
+            2180,
+            5,
+            "Enterocolite necrosante estágio II (Bell).",
+            "Acesso venoso central necessário para NPT prolongada e antibioticoterapia, com previsão de uso superior a 7 dias."
             );
 
         renderCaseOfSymptomInCanva();
         identifyCasePICC();
     }
 
-    private void processNewCaseOfSymptom(bool state, string description, string name, string motherName, int age, string record, int weight, int leito)
+    private void processNewCaseOfSymptom(bool isPiccCase, string description, string name, string motherName, int age, string currentState, int weight, int leito, string generalDiag, string justification)
     {
-        Baby baby = new Baby(state, description, name, age, motherName, false, record, weight, leito);
-        Babys.Add(baby);
+        Baby baby = new Baby(isPiccCase, description, name, age, motherName, false, currentState, weight, leito);
+
+        BabyCase babyCase = new BabyCase();
+        babyCase.baby = baby;
+        babyCase.justification = justification;
+        babyCase.generalDiagnosis = generalDiag;
+
+        Babys.Add(babyCase);
         SymptomCollection.Instance.AddSymptom(Babys);
     }
 
@@ -77,7 +96,7 @@ public class ControllerSymptoms : MonoBehaviour
     {
         foreach(Transform incubator in incubators)
         {
-            string incubadora = "Incubadora" + baby.Leito;
+            string incubadora = "Incubadora" + baby.incubator;
             if (incubadora.Equals(incubator.name))
             {
                 FindObjectOfType<ControllerUTI>().SetCurrentIncubator(incubator);
@@ -89,21 +108,21 @@ public class ControllerSymptoms : MonoBehaviour
     {
         if (Babys.Count == canvasSympton.Count) //Para contar se a quantidade de dados é maior ou superior a quantidade de incubadoras
         {
-            for (int i = 0; i < Babys.Count; i++)
+            for (int ii = 0; ii < Babys.Count; ii++)
             {   
-                TextMeshProUGUI babyName = canvasSympton[i].transform.Find("Name").GetComponent<TextMeshProUGUI>();
-                TextMeshProUGUI babyDescription = canvasSympton[i].transform.Find("DescriptionSymptoms").GetComponent<TextMeshProUGUI>();
-                TextMeshProUGUI recordText = canvasSympton[i].transform.Find("Record").GetComponent<TextMeshProUGUI>();
-                TextMeshProUGUI numberRecord = canvasSympton[i].transform.Find("NRecord").GetComponent<TextMeshProUGUI>();
-                TextMeshProUGUI numberLeito = canvasSympton[i].transform.Find("NLeito").GetComponent<TextMeshProUGUI>();
-                TextMeshProUGUI numberPeso = canvasSympton[i].transform.Find("NPeso").GetComponent<TextMeshProUGUI>();
+                TextMeshProUGUI babyName = canvasSympton[ii].transform.Find("BabyName").GetComponent<TextMeshProUGUI>();
+                TextMeshProUGUI babyDescription = canvasSympton[ii].transform.Find("History").GetChild(0).GetComponent<TextMeshProUGUI>();
+                TextMeshProUGUI recordText = canvasSympton[ii].transform.Find("CurrentState").GetChild(0).GetComponent<TextMeshProUGUI>();
+                TextMeshProUGUI numberRecord = canvasSympton[ii].transform.Find("MedicalRecord").GetComponent<TextMeshProUGUI>();
+                TextMeshProUGUI numberIncubator = canvasSympton[ii].transform.Find("Incubator").GetComponent<TextMeshProUGUI>();
+                TextMeshProUGUI numberWeight = canvasSympton[ii].transform.Find("Weight").GetComponent<TextMeshProUGUI>();
 
-                babyName.text = Babys[i].Name;
-                babyDescription.text = Babys[i].DescriptionSymptom;
-                recordText.text = Babys[i].Record;
-                numberRecord.text = Babys[i].NRecord.ToString();
-                numberLeito.text = Babys[i].Leito.ToString();
-                numberPeso.text = Babys[i].Weight.ToString()+" g".ToString();
+                babyName.text = "NOME DO PACIENTE: " + "<color=black>" + Babys[ii].baby.name;
+                babyDescription.text = Babys[ii].baby.medicalHistory;
+                recordText.text = Babys[ii].baby.medicalRecord;
+                numberRecord.text = "PRONTUARIO: " + "<color=black>" + Babys[ii].baby.numberMedicalRecord.ToString();
+                numberIncubator.text = "LEITO: " + "<color=black>" + Babys[ii].baby.incubator.ToString();
+                numberWeight.text = "PESO (em gramas): " + "<color=black>" + Babys[ii].baby.weight.ToString()+" g".ToString();
             }
         }
         else
@@ -113,7 +132,7 @@ public class ControllerSymptoms : MonoBehaviour
     private void identifyCasePICC()
     {
         Canvas canvas = canvasSympton[0].GetComponent<Canvas>();
-        Baby FindBaby;
+        BabyCase FindBaby;
 
         //Find the symptom on canvas array
         if (canvas != null)
@@ -125,7 +144,7 @@ public class ControllerSymptoms : MonoBehaviour
                 if (propertyChildDescriptionCanva != null)
                 {
                     string texto = propertyChildDescriptionCanva.text;
-                    Baby baby = Babys.Find(s => s.DescriptionSymptom.Contains(texto));
+                    BabyCase baby = Babys.Find(s => s.baby.medicalHistory.Contains(texto));
                     FindBaby = baby;
                 }
             }

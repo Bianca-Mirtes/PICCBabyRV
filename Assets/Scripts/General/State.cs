@@ -1,5 +1,6 @@
 public enum State
 {
+    None,
     VerificarCasoPicc,
     ColetarAutorização,
     RecolherMateriais,

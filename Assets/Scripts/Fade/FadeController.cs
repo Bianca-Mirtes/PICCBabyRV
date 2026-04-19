@@ -30,7 +30,7 @@ public class FadeController : MonoBehaviour
     public void FadeWithDesactivationOfObject(GameObject obj)
     {
         objForDesactivation = obj;
-        FadeInForFadeOut(5f);
+        FadeInForFadeOut(10f);
     }
 
     public void FadeOutWithDesactivationOfObject(GameObject obj, float time)

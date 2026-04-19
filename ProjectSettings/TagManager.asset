@@ -17,7 +17,6 @@ TagManager:
   - ResetCanva
   - Incorrect
   - PincaAnatomica
-  - MainMenu
   layers:
   - Default
   - TransparentFX

@@ -82,6 +82,8 @@ public class ControllerUTI : MonoBehaviour
         Uniforme.SetActive(false);
         foreach (GameObject obj in mayosTablePICC)
             obj.SetActive(false);
+
+        ProcessCasePicc();
     }
 
     void Update()
@@ -99,9 +101,6 @@ public class ControllerUTI : MonoBehaviour
 
     public void VerifyProcessStateNow()
     {
-        if (StateController.Instance.CompareStates(State.VerificarCasoPicc))
-            ProcessCasePicc();
-        else
         if (StateController.Instance.CompareStates(State.RecolherMateriais))
             ProcessRecolherMateriais();
         else
@@ -542,6 +541,7 @@ public class ControllerUTI : MonoBehaviour
         table.GetChild(0).GetChild(6).gameObject.SetActive(false);
         table.GetChild(0).GetChild(7).gameObject.SetActive(true);
         Congratulations();
+        FindFirstObjectByType<PainRegulatorController>().StartPainRegulation();
         StateController.Instance.SetState(State.RealizarPunção);
     }
 

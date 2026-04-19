@@ -3,20 +3,19 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
+using BabyData;
 
 public class ClickEventSymptoms : MonoBehaviour
 {
     private Button btn;
 
-    public TextMeshProUGUI SymptomTextCanva;
-
     public Canvas canvaResult; // Canva que mostrará os resultados da escolha de caso picc
-
-    public Canvas canvaSymptom; // Canva do painel de sintomas do bebe
 
     public Transform formulario;
 
-    private Baby BabySelect = null;
+    private BabyCase BabySelect;
+
+    private Canvas canvaSymptom;
 
     public Transform objectsForm;
 
@@ -29,11 +28,12 @@ public class ClickEventSymptoms : MonoBehaviour
     {
         btn = gameObject.GetComponent<Button>();
         btn.onClick.AddListener(TaskOnClick);
+        canvaSymptom = transform.parent.GetComponent<Canvas>();
     }
 
     void TaskOnClick()
     {
-        if (SymptomTextCanva != null)
+        if (canvaSymptom != null)
         {
             GameObject ResultGameObject = canvaResult.gameObject;
             Transform ResultChild = ResultGameObject.transform.Find("Result");
@@ -43,24 +43,27 @@ public class ClickEventSymptoms : MonoBehaviour
             {
                 ResultGameObject.SetActive(true);
 
-                TextMeshProUGUI nameBaby = canvaSymptom.transform.Find("Name").GetComponent<TextMeshProUGUI>();
-
-                BabySelect = SymptomCollection.Instance.FindUniqueBaby(nameBaby.text);
+                TextMeshProUGUI nameBaby = canvaSymptom.transform.Find("BabyName").GetComponent<TextMeshProUGUI>();
+                
+                string name = nameBaby.text.Split(":")[1];
+                BabySelect = SymptomCollection.Instance.FindUniqueBaby(name.Trim());
   
                 if (btn.tag.Equals("Sim"))
                 {
-                    if (BabySelect.StateCasePicc)
+                    if (BabySelect.baby.isCasePicc)
                     {
                         RenderForm();
                         BlockOthersCanvasBaby();
-                        FindObjectOfType<ControllerSymptoms>().FindIncubator(BabySelect);
+                        FindObjectOfType<ControllerSymptoms>().FindIncubator(BabySelect.baby);
                         StateController.Instance.SetState(State.ColetarAutorização);
                         AudioManager.instance.Play(correct_sound_name);
-                        TextResult.text = "Isso mesmo! Agora pegue o formulário que está na bancada e leve para fora, para que a mãe assine!";
+                        TextResult.text = "Isso mesmo! " + BabySelect.justification +
+                            "\n\nAgora pegue o formulário que está na bancada e leve para fora, para que a mãe assine!";
+
                     }
                     else
                     {
-                        TextResult.text = "Incorreto! Esse não é um caso PICC!";
+                        TextResult.text = "Incorreto! " + BabySelect.justification;
                         AudioManager.instance.Play(incorrect_sound_name);
                         FindObjectOfType<ControllerUTI>().GetButtonSelect().enabled = true;
                         Invoke("ResetCase", 7f);
@@ -69,16 +72,16 @@ public class ClickEventSymptoms : MonoBehaviour
                 }
                 else if (btn.tag.Equals("Nao"))
                 {
-                    if (!BabySelect.StateCasePicc)
+                    if (!BabySelect.baby.isCasePicc)
                     {
-                        TextResult.text = "Isso mesmo! Esse não é um caso PICC";
+                        TextResult.text = "Isso mesmo! " + BabySelect.justification;
                         AudioManager.instance.Play(correct_sound_name);
                         canvaSymptom.gameObject.transform.localScale = new Vector3(0f, 0f, 0f);
                         FindObjectOfType<ControllerUTI>().FinishProcediment(true);
                     }
                     else
                     {
-                        TextResult.text = "Incorreto! É um caso PICC!";
+                        TextResult.text = "Incorreto! " + BabySelect.justification;
                         AudioManager.instance.Play(incorrect_sound_name);
                         FindObjectOfType<ControllerUTI>().GetButtonSelect().enabled = true;
                         Invoke("ResetCase", 7f);
@@ -102,31 +105,35 @@ public class ClickEventSymptoms : MonoBehaviour
     /** Renderizar o formulário que irá surgir com as informações do paciente */
     void RenderForm()
     {
-        Transform canvaCasePICC = transform.parent;
         Transform childCanvaTransform = formulario.Find("Canvas");
 
         // take the informations from Canva "CasePICC"
-        TextMeshProUGUI babysName = canvaCasePICC.transform.Find("Name").GetComponent<TextMeshProUGUI>();
-        Sprite babyIconSprite = canvaCasePICC.transform.Find("IconPatient").GetComponent<Image>().sprite;
-        TextMeshProUGUI relatorioText = canvaCasePICC.transform.Find("DescriptionSymptoms").GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI babysName = canvaSymptom.transform.Find("BabyName").GetComponent<TextMeshProUGUI>();
+        Sprite babyIconSprite = canvaSymptom.transform.Find("Header").Find("IconPatient").GetComponent<Image>().sprite;
+        TextMeshProUGUI medicalHis = canvaSymptom.transform.Find("History").GetChild(0).GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI currentState = canvaSymptom.transform.Find("CurrentState").GetChild(0).GetComponent<TextMeshProUGUI>();
 
-        Baby baby = SymptomCollection.Instance.FindUniqueBaby(babysName.text);
+        string name = babysName.text.Split(":")[1];
+        BabyCase baby = SymptomCollection.Instance.FindUniqueBaby(name.Trim());
 
         // spends the informations from Canva "CasePICC" for the Canva "Formulario".
         TextMeshProUGUI babysNameForm = childCanvaTransform.Find("Patient").GetComponent<TextMeshProUGUI>();
-        babysNameForm.text = babysName.text;
+        babysNameForm.text = name.Trim();
 
         Transform iconForm = childCanvaTransform.Find("Image");
         iconForm.GetComponent<Image>().sprite = babyIconSprite;
 
         TextMeshProUGUI relatorioForm = childCanvaTransform.Find("Relatorio").GetComponent<TextMeshProUGUI>();
-        relatorioForm.text = relatorioText.text;
+        relatorioForm.text = medicalHis.text;
+        relatorioForm.text += currentState.text;
+        relatorioForm.text += baby.generalDiagnosis;
+        relatorioForm.text +=  baby.justification;
 
         TextMeshProUGUI idade = childCanvaTransform.Find("Age").GetComponent<TextMeshProUGUI>();
-        idade.text = baby.Age.ToString();
+        idade.text = baby.baby.age.ToString();
 
         TextMeshProUGUI responsavel = childCanvaTransform.Find("Responsavel").GetComponent<TextMeshProUGUI>();
-        responsavel.text = baby.MotherName;
+        responsavel.text = baby.baby.motherName;
 
         formulario.gameObject.SetActive(true);
         objectsForm.GetChild(1).gameObject.SetActive(true); // Ativa a seta sinalizadora do formulário
@@ -135,7 +142,7 @@ public class ClickEventSymptoms : MonoBehaviour
     }
 
     void BlockOthersCanvasBaby() {
-        BabySelect.ModifyStateProcess(true);
+        BabySelect.baby.ModifyStateProcess(true);
     }
 
 }

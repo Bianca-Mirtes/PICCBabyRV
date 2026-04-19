@@ -1,37 +1,38 @@
 using UnityEngine;
 public class Baby 
 {
-    public string Name { get; }
+    public string name { get; }
    
-    public bool StateCasePicc { get; }
+    public bool isCasePicc { get; }
 
-    public string DescriptionSymptom { get; }
+    public string medicalHistory { get; }
 
-    public int Age { get; }
+    public int age { get; }
 
-    public string MotherName { get; }
+    public string motherName { get; }
 
-    public string Record { get; }
+    public string medicalRecord { get; }
 
-    public int NRecord { get; }
+    public int numberMedicalRecord { get; }
 
-    public int Weight { get; }
+    public int weight { get; }
 
-    public int Leito { get; }
+    public int incubator { get; }
 
    public bool ProcessIsActive {get; set;}
 
-   public Baby(bool state, string descriptionSymptom, string name, int age, string motherName, bool processIsActive, string record, int weight, int leito)
+   public Baby(bool state, string descriptionSymptom, string babyName, int babyAge, string mother, bool processIsActive, string record, int babyWeight, int leito)
    {
-      StateCasePicc = state;
-      Name = name;
-      MotherName = motherName;
-      DescriptionSymptom = descriptionSymptom;
-      Age = age;
+      isCasePicc = state;
+      name = babyName;
+      motherName = mother;
+      medicalHistory = descriptionSymptom;
+      age = babyAge;
       ProcessIsActive = processIsActive;
-      Record = record;
-      Weight = weight;
-      Leito = leito;
+      medicalRecord = record;
+      weight = babyWeight;
+      incubator = leito;
+      numberMedicalRecord = Random.Range(1000, 9999);
    }
 
    public void ModifyStateProcess(bool newState) {
