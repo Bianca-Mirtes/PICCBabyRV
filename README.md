@@ -2,6 +2,10 @@
 
 **PICCBabyRV** é um simulador imersivo em **Realidade Virtual (VR)** desenvolvido para o treinamento de **enfermeiros neonatais** na inserção do **Cateter Central de Inserção Periférica (PICC)** em **recém-nascidos prematuros**.
 
+<p align="center">
+  <img src="Menu.png" alt="DodgeballMR gameplay" width="800"/>
+</p>
+
 > ⚠️ O projeto tem como objetivo garantir um **acesso vascular seguro e prolongado**, respeitando a fragilidade e o pequeno calibre dos vasos desses bebês.
 
 ---
@@ -53,3 +57,11 @@ Desenvolvido por:
 ---
 
 ## 📷 Capturas de Tela
+
+<p align="center">
+  <img src="Antissepsia.png" alt="DodgeballMR gameplay" width="800"/>
+</p>
+
+<p align="center">
+  <img src="prontuario.png" alt="DodgeballMR gameplay" width="800"/>
+</p>
