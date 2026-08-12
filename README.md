@@ -59,9 +59,17 @@ Desenvolvido por:
 ## 📷 Capturas de Tela
 
 <p align="center">
-  <img src="Antissepsia.png" alt="DodgeballMR gameplay" width="800"/>
+  <img src="prontuario.png" alt="DodgeballMR gameplay" width="800"/>
 </p>
 
 <p align="center">
-  <img src="prontuario.png" alt="DodgeballMR gameplay" width="800"/>
+  <img src="mãe.png" alt="DodgeballMR gameplay" width="800"/>
+</p>
+
+<p align="center">
+  <img src="Materiais.png" alt="DodgeballMR gameplay" width="800"/>
+</p>
+
+<p align="center">
+  <img src="Antissepsia.png" alt="DodgeballMR gameplay" width="800"/>
 </p>
